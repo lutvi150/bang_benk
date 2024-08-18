@@ -1,6 +1,7 @@
-#app_name="Bang Benk Becco"
-#app_url="http://localhost:8080/"
-#owner="Gracia Novellia"
+app_name="Bang Benk Becco"
+app_url="http://localhost:8080/"
+owner="Gracia Novellia"
+phone="082217252373"
 #--------------------------------------------------------------------
 # Example Environment Configuration file
 #
@@ -17,7 +18,7 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-# CI_ENVIRONMENT = production
+CI_ENVIRONMENT = development
 
 #--------------------------------------------------------------------
 # APP
@@ -33,13 +34,13 @@
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
-# database.default.DBDriver = MySQLi
-# database.default.DBPrefix =
-# database.default.port = 3306
+database.default.hostname = localhost
+database.default.database = bang_benk
+database.default.username = root
+database.default.password = 
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
 
 # If you use MySQLi as tests, first update the values of Config\Database::$tests.
 # database.tests.hostname = localhost

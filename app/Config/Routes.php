@@ -8,7 +8,11 @@ use CodeIgniter\Router\RouteCollection;
 $routes->set404Override(function () {
     return view('404.php');
 });
-$routes->get('/', 'Home::index');
-$routes->get('/login', 'Home::login');
+$routes->get('/', 'Home::front_page');
 $routes->get('/register', 'Home::register');
 $routes->get('/logout', 'Home::logout');
+$routes->post('/api-login', 'Home::verification');
+// use for admin
+$routes->group('admin',static function ( $routes) {
+$routes->get('login','Home::login');
+});

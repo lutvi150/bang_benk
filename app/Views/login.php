@@ -19,7 +19,7 @@
                         <form action="#" id="loginForm">
                             <div class="form-group">
                                 <label class="control-label" for="username">Username</label>
-                                <input type="text" placeholder="example@gmail.com" title="Please enter you username" required="" value="" name="username" id="username" class="form-control">
+                                <input type="text" placeholder="example@gmail.com" title="Please enter you username" required="" value="" name="email" id="username" class="form-control">
                                 <span class="help-block small">Email anda yang terdaftar</span>
                             </div>
                             <div class="form-group">
@@ -32,7 +32,7 @@
 										<input type="checkbox" class="i-checks"> Remember me </label>
                                 <p class="help-block small hidden">(if this is a private computer)</p>
                             </div>
-                            <button class="btn btn-success btn-block loginbtn">Login</button>
+                            <button class="btn btn-success btn-block loginbtn" onclick="login();">Login</button>
                             <a class="btn btn-default btn-block" href="<?=base_url('register')?>">Register</a>
                         </form>
                     </div>
@@ -43,5 +43,7 @@
     </div>
    <?=$this->include('layout/admin/footer')?>
 </body>
-
+<script>
+    
+</script>
 </html>

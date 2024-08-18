@@ -1,0 +1,23 @@
+ 
+.carousel-slider .carousel-item-four {
+    background: url(../../../assets/pages/img/shop-slider/slider/1.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.carousel-slider .carousel-item-five {
+    background: url(../../../assets/pages/img/shop-slider/slider/2.jpg);
+    background-size: cover;
+}
+
+.carousel-slider .carousel-item-six {
+    background: url(../../../assets/pages/img/shop-slider/slider/3.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.carousel-slider .carousel-item-seven {
+    background: url(../../../assets/pages/img/shop-slider/slider/4.jpg);
+    background-size: cover;
+    background-position: center center;
+}
