@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controllers;
+
+use App\Models\ModelUser;
 use CodeIgniter\API\ResponseTrait;
 
 class Home extends BaseController
@@ -10,7 +12,8 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
-    function front_page()  {
+    function front_page()
+    {
         return view('front-page');
     }
     public function login()
@@ -24,59 +27,62 @@ class Home extends BaseController
         return view('register', $data);
     }
     // use for verification login by admin
-    function verification() {
+    function verification()
+    {
 
         $validation =  \Config\Services::validation();
         $validation->setRules([
-            'email' =>'required|valid_email',
+            'email' => 'required|valid_email',
             'password' => 'required',
-        ],[
-            'email'=>[
-                'required'=>'Email tidak boleh kosong',
-                'valid_email'=>'Email tidak valid',
-            ],[
-                'password'=>'Password tidak boleh kosong',
+        ], [
+            'email' => [
+                'required' => 'Email tidak boleh kosong',
+                'valid_email' => 'Email tidak valid',
+            ],
+            [
+                'password' => 'Password tidak boleh kosong',
             ]
         ]);
-        if ($validation->run($this->request->getVar()) == FALSE) {
-            return $this->respond([
-                'error' => true,
-               'message' => $validation->getErrors(),
-            ]);
+        if (!$validation->withRequest($this->request)->run()) {
+            $response = [
+                'status' => 'validation_failed',
+                'message' => $validation->getErrors(),
+            ];
         } else {
             $email = $this->request->getPost('email');
-            $password = $this->request->getPost('password');
-            $user = $this->userModel->where('email', $email)->first();
-        //     if ($user) {
-        //         if (password_verify($password, $user['password'])) {
-        //             if ($user['is_active'] == 1) {
-        //                 $this->session->set('logged_in', true);
-        //                 $this->session->set('user_id', $user['id']);
-        //                 $this->session->set('username', $user['username']);
-        //                 $this->session->set('email', $user['email']);
-        //                 $this->session->set('role', $user['role']);
-        //                 return $this->respond([
-        //                     'error' => false,
-        //                    'message' => 'Login berhasil',
-        //                 ]);
-        //             } else {
-        //                 return $this->respond([
-        //                     'error' => true,
-        //                    'message' => 'Akun belum diaktifkan',
-        //                 ]);
-        //             }
-        //         } else {
-        //             return $this->respond([
-        //                 'error' => true,
-        //                'message' => 'Password salah',
-        //             ]);
-        //         }
-        //     } else {
-        //         return $this->respond([
-        //             'error' => true,
-        //            'message' => 'Email tidak terdaftar',
-        //         ]);
-        //     }
-        // }
+            $password = hash('sha256', $this->request->getPost('password'));
+            $user = new ModelUser();
+            $get_email = $user->where('email', $email)->first();
+            if ($get_email == NULL) {
+                $response = [
+                    'status' => 'email_not_found',
+                    'message' => 'email tidak ditemukan',
+                ];
+            } else {
+                $get_email = $user->where('email', $get_email->email)->where('password', $password)->first();
+                if ($get_email) {
+                    $session = \Config\Services::session();
+                    $new_session = [
+                        'login' => true,
+                        'email' => $get_email->email,
+                        'id' => $get_email->id,
+                        'nama_user' => $get_email->nama_user,
+                        'role' => $get_email->role,
+                        'profil_status' => $get_email->profil_status,
+                    ];
+                    $session->set($new_session);
+                    $response = [
+                        'status' => 'success',
+                        'message' => 'login berhasil'
+                    ];
+                } else {
+                    $response = [
+                        'status' => 'password_not_same',
+                        'message' => 'password tidak sama'
+                    ];
+                }
+            }
+        }
+        return $this->respond($response, 200);
     }
-    }}
+}
