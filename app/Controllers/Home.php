@@ -19,7 +19,14 @@ class Home extends BaseController
     public function login()
     {
         $data['head'] = 'Login';
-        return view('login', $data);
+        $session = \Config\Services::session();
+        if ($session->get('role') == 'administrator') {
+            return redirect()->route('administrator');
+        } elseif ($session->get('role') == 'pelanggan') {
+            return redirect()->route('pelanggan');
+        } else {
+            return view('login', $data);
+        }
     }
     public function register()
     {
@@ -39,8 +46,8 @@ class Home extends BaseController
                 'required' => 'Email tidak boleh kosong',
                 'valid_email' => 'Email tidak valid',
             ],
-            [
-                'password' => 'Password tidak boleh kosong',
+            'password' => [
+                'required' => 'password tidak boleh kosong'
             ]
         ]);
         if (!$validation->withRequest($this->request)->run()) {

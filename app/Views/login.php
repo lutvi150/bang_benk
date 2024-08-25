@@ -38,13 +38,12 @@
                                     <input type="checkbox" class="i-checks"> Remember me </label>
                                 <p class="help-block small hidden">(if this is a private computer)</p>
                             </div>
-                            <button class="btn btn-success btn-block loginbtn" onclick="login();">Login</button>
+                            <button type="button" class="btn btn-success btn-block loginbtn" onclick="login();">Login</button>
                             <a class="btn btn-default btn-block" href="<?= base_url('register') ?>">Register</a>
                         </form>
                     </div>
                 </div>
             </div>
-            <?= $this->include('layout/admin/copyright') ?>
         </div>
     </div>
     <?= $this->include('layout/admin/footer') ?>
@@ -52,11 +51,9 @@
 <script src="<?= base_url() ?>assets/form-master/src/jquery.form.js"></script>
 <script src="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.js"></script>
 <script>
-    $(document).ready(function() {
-        Swal.fire("helll")
-    });
     let url = "<?= base_url() ?>";
     login = () => {
+        $(".text-error").text("");
         $.ajax({
             type: "POST",
             url: url + "api-login",
@@ -67,15 +64,23 @@
             dataType: "JSON",
             success: function(response) {
                 if (response.status == 'validation_failed') {
-                    $.each(response.data, function(index, array) {
+                    $.each(response.message, function(index, array) {
                         $(".e-" + index).text(array);
                     });
                 } else if (response.status == 'success') {
                     Swal.fire({
                         icon: "success",
                         title: "Login Berhasil",
-                        text: "Selamat Datang di Aplikasi"
+                        text: "Selamat Datang di Aplikasi",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            setInterval(() => {
+                                location.reload();
+                            }, 200);
+                        }
                     });
+                } else {
+                    $(".e-email").text(response.message);
                 }
             },
             error: function(xhr, status, error) {

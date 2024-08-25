@@ -30,9 +30,15 @@
   <!-- normalize CSS
 		============================================ -->
   <link rel="stylesheet" href="<?= base_url() ?>/assets/theme/kiaalap-master/css/normalize.css">
+  <!-- meanmenu icon CSS
+		============================================ -->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/theme/kiaalap-master/css/meanmenu.min.css">
   <!-- main CSS
 		============================================ -->
   <link rel="stylesheet" href="<?= base_url() ?>/assets/theme/kiaalap-master/css/main.css">
+  <!-- educate icon CSS
+		============================================ -->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/theme/kiaalap-master/css/educate-custon-icon.css">
   <!-- morrisjs CSS
 		============================================ -->
   <link rel="stylesheet" href="<?= base_url() ?>/assets/theme/kiaalap-master/css/morrisjs/morris.css">
@@ -53,7 +59,7 @@
   <!-- responsive CSS
 		============================================ -->
   <link rel="stylesheet" href="<?= base_url() ?>/assets/theme/kiaalap-master/css/responsive.css">
-  <!-- sweet aler -->
+  <!-- sweet alert -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.css">
   <!-- modernizr JS
 		============================================ -->
