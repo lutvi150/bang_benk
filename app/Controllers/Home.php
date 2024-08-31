@@ -12,7 +12,7 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
-    function front_page()
+    public function front_page()
     {
         return view('front-page');
     }
@@ -21,9 +21,11 @@ class Home extends BaseController
         $data['head'] = 'Login';
         $session = \Config\Services::session();
         if ($session->get('role') == 'administrator') {
+            // echo json_encode('admin');
             return redirect()->route('administrator');
         } elseif ($session->get('role') == 'pelanggan') {
             return redirect()->route('pelanggan');
+            // echo json_encode('pelanggan');
         } else {
             return view('login', $data);
         }
@@ -34,10 +36,10 @@ class Home extends BaseController
         return view('register', $data);
     }
     // use for verification login by admin
-    function verification()
+    public function verification()
     {
 
-        $validation =  \Config\Services::validation();
+        $validation = \Config\Services::validation();
         $validation->setRules([
             'email' => 'required|valid_email',
             'password' => 'required',
@@ -47,8 +49,8 @@ class Home extends BaseController
                 'valid_email' => 'Email tidak valid',
             ],
             'password' => [
-                'required' => 'password tidak boleh kosong'
-            ]
+                'required' => 'password tidak boleh kosong',
+            ],
         ]);
         if (!$validation->withRequest($this->request)->run()) {
             $response = [
@@ -60,7 +62,7 @@ class Home extends BaseController
             $password = hash('sha256', $this->request->getPost('password'));
             $user = new ModelUser();
             $get_email = $user->where('email', $email)->first();
-            if ($get_email == NULL) {
+            if ($get_email == null) {
                 $response = [
                     'status' => 'email_not_found',
                     'message' => 'email tidak ditemukan',
@@ -80,12 +82,12 @@ class Home extends BaseController
                     $session->set($new_session);
                     $response = [
                         'status' => 'success',
-                        'message' => 'login berhasil'
+                        'message' => 'login berhasil',
                     ];
                 } else {
                     $response = [
                         'status' => 'password_not_same',
-                        'message' => 'password tidak sama'
+                        'message' => 'password tidak sama',
                     ];
                 }
             }
