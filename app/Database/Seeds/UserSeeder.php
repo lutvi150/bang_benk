@@ -8,16 +8,16 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        $data=[
+        $data = [
             [
-                "nama_user"=>"Admin",
-                "email"=>"admin@gmail.com",
-                "password"=>hash("sha256","password"),
-                "role"=>"administrator",
-                "last_login"=>date("Y-m-d H:i:s"),
-                "created_at"=>date("Y-m-d H:i:s"),
-            ]
-            ];
-            $this->db->table("table_user")->insertBatch($data);
+                "nama_user" => "Admin",
+                "email" => "admin@gmail.com",
+                "password" => hash("sha256", "password"),
+                "role" => "administrator",
+                "last_login" => date("Y-m-d H:i:s"),
+                "created_at" => date("Y-m-d H:i:s"),
+            ],
+        ];
+        $this->db->table("table_user")->insertBatch($data);
     }
 }

@@ -21,19 +21,19 @@
                                     <input type="password" class="form-control">
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Repeat Password</label>
+                                    <label>Ulangi Password</label>
                                     <input type="password" class="form-control">
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Email Address</label>
+                                    <label>Email </label>
                                     <input class="form-control">
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Repeat Email Address</label>
+                                    <label>Ulangi Email </label>
                                     <input class="form-control">
                                 </div>
                                 <div class="checkbox col-lg-12">
-                                    <input type="checkbox" class="i-checks" checked> Sigh up for our newsletter
+                                    <input type="checkbox" class="i-checks" checked> Simpan Informasi Login
                                 </div>
                             </div>
                             <div class="text-center">
@@ -44,7 +44,6 @@
                     </div>
                 </div>
 			</div>
-			<?=$this->include('layout/admin/copyright')?>
 		</div>
     </div>
    <?=$this->include('layout/admin/head')?>
