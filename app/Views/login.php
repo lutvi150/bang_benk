@@ -9,7 +9,7 @@
     }
 </style>
 
-<body>
+<body id="form-login">
     <!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -51,6 +51,13 @@
 <script src="<?= base_url() ?>assets/form-master/src/jquery.form.js"></script>
 <script src="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.js"></script>
 <script>
+    var wage = document.getElementById("form-login");
+    wage.addEventListener("keydown", function(e) {
+        if (e.code === "Enter") {
+            login();
+        }
+    });
+
     let url = "<?= base_url() ?>";
     login = () => {
         $(".text-error").text("");

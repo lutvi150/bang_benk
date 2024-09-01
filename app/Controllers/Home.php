@@ -21,9 +21,9 @@ class Home extends BaseController
         $data['head'] = 'Login';
         $session = \Config\Services::session();
         if ($session->get('role') == 'administrator') {
-            return redirect()->route('administrator');
+            return redirect()->to('administrator');
         } elseif ($session->get('role') == 'pelanggan') {
-            return redirect()->route('pelanggan');
+            return redirect()->to('pelanggan');
         } else {
             return view('login', $data);
         }
