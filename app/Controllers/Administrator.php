@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class Administrator extends BaseController
 {
@@ -12,5 +11,11 @@ class Administrator extends BaseController
         $data['head'] = 'Dashboard Admin';
         $data['breadcrumb'] = 'Dashboard Admin';
         return view('administrator/dashboard', $data);
+    }
+    public function transaksi()
+    {
+        $data['head'] = 'Transaksi';
+        $data['breadcrumb'] = 'Page Transaksi';
+        return view('administrator/transaksi', $data);
     }
 }

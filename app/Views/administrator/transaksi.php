@@ -1,19 +1,18 @@
 <?=$this->include('layout/admin/head')?>
-
 <body>
     <!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
-    <!-- Start Header menu area -->
+    <!-- Start Left menu area -->
     <?=$this->include('layout/admin/header_menu')?>
-    <!-- End Header menu area -->
+    <!-- End Left menu area -->
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="index.html"><img class="main-logo" src="<?=base_url()?>assets/theme/kiaalap-master/img/logo/logo.png" alt="" /></a>
+                        <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -28,13 +27,31 @@
                                     <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
                                         <div class="menu-switcher-pro">
                                             <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
-                                                <i class="educate-icon educate-nav"></i>
-                                            </button>
+													<i class="educate-icon educate-nav"></i>
+												</button>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
-
+                                            <ul class="nav navbar-nav mai-top-nav">
+                                                <li class="nav-item"><a href="#" class="nav-link">Home</a>
+                                                </li>
+                                                <li class="nav-item"><a href="#" class="nav-link">About</a>
+                                                </li>
+                                                <li class="nav-item"><a href="#" class="nav-link">Services</a>
+                                                </li>
+                                                <li class="nav-item dropdown res-dis-nn">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Project <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                                    <div role="menu" class="dropdown-menu animated zoomIn">
+                                                        <a href="#" class="dropdown-item">Documentation</a>
+                                                        <a href="#" class="dropdown-item">Expert Backend</a>
+                                                        <a href="#" class="dropdown-item">Expert FrontEnd</a>
+                                                        <a href="#" class="dropdown-item">Contact Support</a>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item"><a href="#" class="nav-link">Support</a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -50,7 +67,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="">
+                                                                        <img src="img/contact/1.jpg" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -62,7 +79,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/4.jpg" alt="">
+                                                                        <img src="img/contact/4.jpg" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -74,7 +91,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/3.jpg" alt="">
+                                                                        <img src="img/contact/3.jpg" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -86,7 +103,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="">
+                                                                        <img src="img/contact/2.jpg" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -163,10 +180,10 @@
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                        <img src="<?=base_url()?>logo/logo_admin.png" alt="" />
-                                                        <span class="admin-name">Admin</span>
-                                                        <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                                                    </a>
+															<img src="img/product/pro4.jpg" alt="" />
+															<span class="admin-name">Admin</span>
+															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li><a href="#"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a>
                                                         </li>
@@ -176,7 +193,7 @@
                                                         </li>
                                                         <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
                                                         </li>
-                                                        <li><a href="<?=base_url('/logout')?>"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        <li><a href="#"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -205,7 +222,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/4.jpg" alt="" />
+                                                                                            <img src="img/contact/4.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -218,7 +235,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="" />
+                                                                                            <img src="img/contact/1.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -231,7 +248,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="" />
+                                                                                            <img src="img/contact/2.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -244,7 +261,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/3.jpg" alt="" />
+                                                                                            <img src="img/contact/3.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -257,7 +274,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/4.jpg" alt="" />
+                                                                                            <img src="img/contact/4.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -270,7 +287,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="" />
+                                                                                            <img src="img/contact/1.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -283,7 +300,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="" />
+                                                                                            <img src="img/contact/2.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -296,7 +313,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="" />
+                                                                                            <img src="img/contact/1.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -309,7 +326,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="" />
+                                                                                            <img src="img/contact/2.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -322,7 +339,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/3.jpg" alt="" />
+                                                                                            <img src="img/contact/3.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -506,9 +523,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
                                                                                             <label class="onoffswitch-label" for="example">
-                                                                                                <span class="onoffswitch-inner"></span>
-                                                                                                <span class="onoffswitch-switch"></span>
-                                                                                            </label>
+																									<span class="onoffswitch-inner"></span>
+																									<span class="onoffswitch-switch"></span>
+																								</label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -522,9 +539,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example3">
                                                                                             <label class="onoffswitch-label" for="example3">
-                                                                                                <span class="onoffswitch-inner"></span>
-                                                                                                <span class="onoffswitch-switch"></span>
-                                                                                            </label>
+																									<span class="onoffswitch-inner"></span>
+																									<span class="onoffswitch-switch"></span>
+																								</label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -538,9 +555,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example4">
                                                                                             <label class="onoffswitch-label" for="example4">
-                                                                                                <span class="onoffswitch-inner"></span>
-                                                                                                <span class="onoffswitch-switch"></span>
-                                                                                            </label>
+																									<span class="onoffswitch-inner"></span>
+																									<span class="onoffswitch-switch"></span>
+																								</label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -554,9 +571,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example7">
                                                                                             <label class="onoffswitch-label" for="example7">
-                                                                                                <span class="onoffswitch-inner"></span>
-                                                                                                <span class="onoffswitch-switch"></span>
-                                                                                            </label>
+																									<span class="onoffswitch-inner"></span>
+																									<span class="onoffswitch-switch"></span>
+																								</label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -570,9 +587,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example2">
                                                                                             <label class="onoffswitch-label" for="example2">
-                                                                                                <span class="onoffswitch-inner"></span>
-                                                                                                <span class="onoffswitch-switch"></span>
-                                                                                            </label>
+																									<span class="onoffswitch-inner"></span>
+																									<span class="onoffswitch-switch"></span>
+																								</label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -586,9 +603,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example6">
                                                                                             <label class="onoffswitch-label" for="example6">
-                                                                                                <span class="onoffswitch-inner"></span>
-                                                                                                <span class="onoffswitch-switch"></span>
-                                                                                            </label>
+																									<span class="onoffswitch-inner"></span>
+																									<span class="onoffswitch-switch"></span>
+																								</label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -602,9 +619,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example5">
                                                                                             <label class="onoffswitch-label" for="example5">
-                                                                                                <span class="onoffswitch-inner"></span>
-                                                                                                <span class="onoffswitch-switch"></span>
-                                                                                            </label>
+																									<span class="onoffswitch-inner"></span>
+																									<span class="onoffswitch-switch"></span>
+																								</label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -626,7 +643,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Mobile Menu start -->
             <?=$this->include('layout/admin/mobile_menu')?>
             <!-- Mobile Menu end -->
@@ -634,7 +650,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="breadcome-list">
+                            <div class="breadcome-list single-page-breadcome">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="breadcome-heading">
@@ -648,7 +664,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod"><?=$breadcrumb?></span>
+                                            <li><span class="bread-blod">Transaksi</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -659,74 +675,63 @@
                 </div>
             </div>
         </div>
-        <!-- content -->
-        <?=$this->renderSection('content')?>
-        <!-- end content -->
+        <!-- Static Table Start -->
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                    <h1>Data Transaksi</h1>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Export Basic</option>
+											<option value="all">Export All</option>
+											<option value="selected">Export Selected</option>
+										</select>
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="state" data-checkbox="true"></th>
+                                                <th data-field="id">No</th>
+                                                <th data-field="name" data-editable="true">Nomor Transaksi</th>
+                                                <th data-field="email" data-editable="true">Nama Pelanggan</th>
+                                                <th data-field="phone" data-editable="true">Tanggal Transaksi</th>
+                                                <th data-field="complete">Nomor HP</th>
+                                                <th data-field="task" data-editable="true">Status</th>
+                                                <th data-field="date" data-editable="true">Akses</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?=$this->include('layout/admin/copyright')?>
     </div>
 
-    <!-- jquery
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/other/jquery-1.12.4.min.js"></script>
-    <!-- bootstrap JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/bootstrap.min.js"></script>
-    <!-- wow JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/wow.min.js"></script>
-    <!-- price-slider JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/jquery-price-slider.js"></script>
-    <!-- meanmenu JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/jquery.meanmenu.js"></script>
-    <!-- owl.carousel JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/owl.carousel.min.js"></script>
-    <!-- sticky JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/jquery.sticky.js"></script>
-    <!-- scrollUp JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/jquery.scrollUp.min.js"></script>
-    <!-- counterup JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/counterup/jquery.counterup.min.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/counterup/waypoints.min.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/counterup/counterup-active.js"></script>
-    <!-- mCustomScrollbar JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/scrollbar/mCustomScrollbar-active.js"></script>
-    <!-- metisMenu JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/metisMenu/metisMenu.min.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/metisMenu/metisMenu-active.js"></script>
-    <!-- morrisjs JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/morrisjs/raphael-min.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/morrisjs/morris.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/morrisjs/morris-active.js"></script>
-    <!-- morrisjs JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/sparkline/jquery.sparkline.min.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/sparkline/jquery.charts-sparkline.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/sparkline/sparkline-active.js"></script>
-    <!-- calendar JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/calendar/moment.min.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/calendar/fullcalendar.min.js"></script>
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/calendar/fullcalendar-active.js"></script>
-    <!-- plugins JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/plugins.js"></script>
-    <!-- main JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/main.js"></script>
-    <!-- tawk chat JS
-		============================================ -->
-    <script src="<?=base_url()?>assets/theme/kiaalap-master/js/tawk-chat.js"></script>
+    <?=$this->include('layout/admin/footer');?>
 </body>
-<?=$this->renderSection('script')?>
 
 </html>

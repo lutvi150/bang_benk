@@ -28,6 +28,12 @@ class Home extends BaseController
             return view('login', $data);
         }
     }
+    public function logout()
+    {
+        $session = \Config\Services::session();
+        $session->destroy();
+        return redirect()->to('/');
+    }
     public function register()
     {
         $data['head'] = "Daftar Akun Baru";
