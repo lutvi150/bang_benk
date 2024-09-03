@@ -58,7 +58,6 @@
         }
     });
 
-    let url = "<?= base_url() ?>";
     login = () => {
         $(".text-error").text("");
         $.ajax({
@@ -81,9 +80,7 @@
                         text: "Selamat Datang di Aplikasi",
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            setInterval(() => {
-                                location.reload();
-                            }, 200);
+                            window.location.reload();;
                         }
                     });
                 } else {

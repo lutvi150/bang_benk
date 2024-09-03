@@ -14,13 +14,13 @@
                         <a title="Landing Page" href="<?= base_url('administrator/katalog_produk') ?>" aria-expanded="false"><span class="educate-icon educate-form icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Katalog Produk</span></a>
                     </li>
                     <li>
-                        <a title="Landing Page" href="" <?= base_url('administrator/produk') ?>" aria-expanded="false"><span class="educate-icon educate-department icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Produk</span></a>
+                        <a title="Landing Page" href="<?= base_url('administrator/produk') ?>" aria-expanded="false"><span class="educate-icon educate-department icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Produk</span></a>
                     </li>
                     <li>
                         <a title="Landing Page" href="events.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data Traksaksi</span></a>
                     </li>
                     <li>
-                        <a title="Landing Page" href="events.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data User</span></a>
+                        <a title="Landing Page" href="<?= base_url('administrator/user') ?>" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data User</span></a>
                     </li>
                     <li>
                         <a title="Landing Page" href="events.html" aria-expanded="false"><span class="educate-icon educate-message icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Chat</span></a>

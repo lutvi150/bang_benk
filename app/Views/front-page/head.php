@@ -1,3 +1,4 @@
+<?php $session = \Config\Services::session(); ?>
 <!DOCTYPE html>
 <!--
 Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
@@ -63,5 +64,5 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
   <link href="<?= base_url() ?>assets/theme/metronic-ui/assets/corporate/css/custom.css" rel="stylesheet">
   <!-- Theme styles END -->
   <!-- costume css -->
-  <link rel="stylesheet" href="<?= base_url() ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 </head>

@@ -30,6 +30,8 @@
   <!-- normalize CSS
 		============================================ -->
   <link rel="stylesheet" href="<?= base_url() ?>/assets/theme/kiaalap-master/css/normalize.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/assets/theme/kiaalap-master/css/data-table/bootstrap-table.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/assets/theme/kiaalap-master/css/data-table/bootstrap-editable.css">
   <!-- meanmenu icon CSS
 		============================================ -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/theme/kiaalap-master/css/meanmenu.min.css">
@@ -64,4 +66,5 @@
   <!-- modernizr JS
 		============================================ -->
   <script src="<?= base_url() ?>/assets/theme/kiaalap-master/js/other/modernizr-2.8.3.min.js"></script>
+  <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 </head>

@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ModelUser extends Model
+class Stok extends Model
 {
-    protected $table            = 'table_user';
-    protected $primaryKey       = 'id';
+    protected $table            = 'table_stok';
+    protected $primaryKey       = 'id_stok';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
-    protected $useSoftDeletes   = true;
+    protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_user', 'email', 'password', 'profil_status', 'role', 'last_login', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields    = ['id_produk', 'stok_awal', 'stok_akhir', 'harga_modal', 'harga_jual', 'keuntungan', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,7 +21,7 @@ class ModelUser extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

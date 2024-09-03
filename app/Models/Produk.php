@@ -4,24 +4,24 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ModelUser extends Model
+class Produk extends Model
 {
-    protected $table            = 'table_user';
-    protected $primaryKey       = 'id';
+    protected $table            = 'table_produk';
+    protected $primaryKey       = 'id_produk';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
-    protected $useSoftDeletes   = true;
+    protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_user', 'email', 'password', 'profil_status', 'role', 'last_login', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields    = ['nama_produk', 'detail_produk', 'nomor_registrasi_produk', 'stok', 'created_at', 'updated_at',];
 
-    protected bool $allowEmptyInserts = false;
+    protected bool $allowEmptyInserts = true;
     protected bool $updateOnlyChanged = true;
 
     protected array $casts = [];
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

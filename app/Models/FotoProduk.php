@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ModelUser extends Model
+class FotoProduk extends Model
 {
-    protected $table            = 'table_user';
-    protected $primaryKey       = 'id';
+    protected $table            = 'table_foto_produk';
+    protected $primaryKey       = 'id_foto_produk';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
-    protected $useSoftDeletes   = true;
+    protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_user', 'email', 'password', 'profil_status', 'role', 'last_login', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields    = ['id_foto_produk', 'id_produk', 'foto_produk', 'produk_unggulan', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
