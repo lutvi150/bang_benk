@@ -20,6 +20,7 @@ $routes->group('admin', static function ($routes) {
     $routes->get('login', 'Home::login');
 });
 $routes->group('administrator', static function ($routes) {
+    $routes->get('transaksi', 'Administrator::transaksi');
     $routes->get('/', 'Administrator::index');
     // user
     $routes->get('user', 'Administrator::user');

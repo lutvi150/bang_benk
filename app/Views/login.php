@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="en">
 <!-- head here -->
-<?= $this->include('layout/admin/head') ?>
+<?=$this->include('layout/admin/head')?>
 <!-- end head -->
 <style>
     .text-error {
@@ -17,7 +17,7 @@
         <div class="error-page-int">
             <div class="text-center m-b-md custom-login">
                 <h3>SILAHKAN LOGIN KE APLIKASI</h3>
-                <p>Selamat Datang di <?= getenv('app_name') ?></p>
+                <p>Selamat Datang di <?=getenv('app_name')?></p>
             </div>
             <div class="content-error">
                 <div class="hpanel">
@@ -39,17 +39,17 @@
                                 <p class="help-block small hidden">(if this is a private computer)</p>
                             </div>
                             <button type="button" class="btn btn-success btn-block loginbtn" onclick="login();">Login</button>
-                            <a class="btn btn-default btn-block" href="<?= base_url('register') ?>">Register</a>
+                            <a class="btn btn-default btn-block" href="<?=base_url('register')?>">Register</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <?= $this->include('layout/admin/footer') ?>
+    <?=$this->include('layout/admin/footer')?>
 </body>
-<script src="<?= base_url() ?>assets/form-master/src/jquery.form.js"></script>
-<script src="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.js"></script>
+<script src="<?=base_url()?>assets/form-master/src/jquery.form.js"></script>
+<script src="<?=base_url()?>assets/sweetalert2/dist/sweetalert2.js"></script>
 <script>
     var wage = document.getElementById("form-login");
     wage.addEventListener("keydown", function(e) {
