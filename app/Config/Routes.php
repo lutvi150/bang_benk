@@ -41,6 +41,8 @@ $routes->group('administrator', static function ($routes) {
     $routes->get('produk/gambar/priview/(:num)', 'Administrator::produk_gambar_priview/$1');
     // transaksi
     $routes->get('transaksi', 'Administrator::transaksi');
+    // transaksi manual
+    $routes->get('transaksi/manual', 'Administrator::transaksi_manual');
 });
 $routes->get('test', 'Home::tes');
 $routes->group('pelanggan', static function ($routes) {

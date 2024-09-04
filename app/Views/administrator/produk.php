@@ -15,6 +15,7 @@
                     <div class="sparkline13-graph">
                         <a href="<?= base_url('administrator/produk/add') ?>">
                             <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Produk</button></a>
+                        <button type="button" class="btn btn-success"><i class="fa fa-print"></i> Cetak</button></a>
                         <div class="datatable-dashv1-list custom-datatable-overright">
                             <div id="toolbar">
                                 <select class="form-control dt-tb">
@@ -44,7 +45,7 @@
                                         <tr>
                                             <td></td>
                                             <td><?= $key + 1  ?></td>
-                                            <td><?= $value->nomor_registrasi_produk ?></td>
+                                            <td><?= $value->barcode ?><button class="btn btn-success btn-xs" type="button"><?= $value->nomor_registrasi_produk ?></button></td>
                                             <td><?= $value->nama_produk ?></td>
                                             <td>Rp. <?= number_format($value->harga_jual) ?></td>
                                             <td>

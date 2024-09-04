@@ -40,6 +40,10 @@ class TableKeranjang extends Migration
                 'type' => 'int',
                 'constraint' => 11,
             ],
+            'jenis_transaksi' => [
+                'type' => 'varchar',
+                'constraint' => 50
+            ],
             'total_harga' => [
                 'type' => 'int',
                 'constraint' => 11,

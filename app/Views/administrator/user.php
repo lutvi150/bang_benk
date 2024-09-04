@@ -33,7 +33,7 @@
                                         <th>Status Akun</th>
                                         <th>Action</th>
                                     </tr>
-                            </thead>
+                                </thead>
                                 <tbody>
                                     <?php foreach ($user as $key => $value): ?>
                                         <tr>

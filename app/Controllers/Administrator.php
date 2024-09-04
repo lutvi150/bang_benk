@@ -17,8 +17,15 @@ class Administrator extends BaseController
     use ResponseTrait;
     public function index()
     {
+        $produk = new Produk();
+        $transaksi = new Transaksi();
+        $user = new ModelUser();
         $data['head'] = 'Dashboard Admin';
         $data['breadcrumb'] = 'Dashboard Admin';
+        $data['produk'] = $produk->where('nama_produk !=', '-')->countAllResults();
+        $data['transaksi'] = $transaksi->countAllResults();
+        $data['user'] = $user->countAllResults();
+        $data['total_transaksi'] = $transaksi->selectSum('total_harga')->findAll();
         return view('administrator/dashboard', $data);
     }
     // use for gamabr
@@ -139,12 +146,20 @@ class Administrator extends BaseController
         $transaksi = new Transaksi();
         $data['head'] = 'Transaksi';
         $data['breadcrumb'] = 'Data Transaksi';
-        $data['transaksi'] = $transaksi->join('table_user');
+        $data['transaksi'] = $transaksi->join('table_user', 'table_transaksi.id_user = table_user.id')->select('table_transaksi.*, table_user.nama_user,table_user.email')->orderBy('id_transaksi', 'DESC')->findAll();
+        // return $this->respond($data, 200);
         return view('administrator/transaksi', $data);
+    }
+    function transaksi_manual()
+    {
+        $data['head'] = 'Transaksi Manual';
+        $data['breadcrumb'] = 'Transaksi Manual';
+        return view('administrator/transaksi_manual', $data);
     }
     // use for produk
     function produk()
     {
+        $generator = new \Picqer\Barcode\BarcodeGeneratorHTML();
         $produk = new Produk();
         $stok = new Stok();
         $data['head'] = 'Produk';
@@ -153,16 +168,19 @@ class Administrator extends BaseController
         $get_produk = $produk->where('nama_produk !=', '-')->findAll();
         if ($get_produk) {
             foreach ($get_produk as $key => $value) {
+                $barcode = $generator->getBarcode($value->nomor_registrasi_produk, $generator::TYPE_EAN_5);
                 $harga_jual = $stok->where('id_produk', $value->id_produk,)->orderBy('created_at', 'DESC')->first();
                 $terjual = $stok->where('id_produk', $value->id_produk)->selectSum('stok_akhir')->findAll();
                 $result[] = $value;
                 $value->{'harga_jual'} = $harga_jual == null ? 0 : $harga_jual->harga_jual;
                 $value->{'terjual'} = $terjual[0]->stok_akhir == null ? 0 : $terjual[0]->stok_akhir;
                 $value->{'transaksi'} = $this->count_transaksi($value->id_produk);
+                $value->{'barcode'} = $barcode;
             }
         }
         $data['produk'] = $result;
         // return $this->respond($data, 200);
+        // exit;
         return view('administrator/produk', $data);
     }
     function count_transaksi($id_produk)

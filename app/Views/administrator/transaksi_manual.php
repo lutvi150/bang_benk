@@ -9,53 +9,39 @@
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h1>Daftar Transaksi</h1>
+                            <h1>Transaksi Manual</h1>
                         </div>
                     </div>
                     <div class="sparkline13-graph">
-                        <a href="<?= base_url('administrator/transaksi/manual') ?>">
-                            <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Transaksi Manual</button></a>
+                        <input type="text" autofocus class="form-control p-2" name="search" id="search" placeholder="Scan Produk">
                         <div class="datatable-dashv1-list custom-datatable-overright">
-                            <div id="toolbar">
-                                <select class="form-control dt-tb">
-                                    <option value="">Export Basic</option>
-                                    <option value="all">Export All</option>
-                                    <option value="selected">Export Selected</option>
-                                </select>
-                            </div>
-                            <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+
+                            <table id="table" class="table">
                                 <thead>
                                     <tr>
                                         <th data-checkbox="true"></th>
                                         <th data-field="id">No.</th>
-                                        <th data-field="name">Nama</th>
-                                        <th data-field="name">Email</th>
-                                        <th data-field="email">Tanggal Transaksi</th>
-                                        <th>Jumlah Transaksi</th>
-                                        <th data-field="phone">Status Transaksi</th>
+                                        <th data-field="name">Nama Produk</th>
+                                        <th data-field="name">Harga</th>
+                                        <th data-field="email">Jumlah</th>
+                                        <th>Total Harga</th>
                                         <th data-field="action">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($transaksi as $key => $value): ?>
-                                        <tr>
-                                            <td></td>
-                                            <td><?= $key + 1  ?></td>
-                                            <td><?= $value->nama_user ?></td>
-                                            <td><?= $value->email ?></td>
-                                            <td><?= date('d F Y', strtotime($value->created_at)) ?></td>
-                                            <td>Rp. <?= number_format($value->total_harga) ?></td>
-                                            <td>
-                                                <button type="button" class="btn btn-success btn-xs">Selesai</button>
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
                                 </tbody>
+                                <tfoot>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Total</th>
+                                    <th></th>
+                                    <th></th>
+                                </tfoot>
                             </table>
+                            <a href=""><button type="button" class="btn btn-success btn-sm"><i class="fa fa-reply"></i> Kembali</button></a>
+                            <button type="button" class="btn btn-success btn-sm"><i class="fa fa-refresh"></i> Reset</button>
                         </div>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table bang_benk.migrations: ~6 rows (approximately)
+-- Dumping data for table bang_benk.migrations: ~5 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
 	(1, '2024-08-18-151205', 'App\\Database\\Migrations\\TablesUser', 'default', 'App', 1723999469, 1),
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `table_keranjang` (
   PRIMARY KEY (`id_keranjang`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table bang_benk.table_keranjang: ~2 rows (approximately)
+-- Dumping data for table bang_benk.table_keranjang: ~4 rows (approximately)
 /*!40000 ALTER TABLE `table_keranjang` DISABLE KEYS */;
 INSERT INTO `table_keranjang` (`id_keranjang`, `id_produk`, `id_stok`, `id_user`, `id_transaksi`, `qty`, `harga`, `total_harga`, `created_at`, `updated_at`) VALUES
 	(7, 3, 3, 5, 4, 5, 150000, 750000, '2024-09-04 04:59:43', '2024-09-04 08:09:22'),
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `table_produk` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id_produk`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table bang_benk.table_produk: ~6 rows (approximately)
 /*!40000 ALTER TABLE `table_produk` DISABLE KEYS */;
@@ -103,7 +103,8 @@ INSERT INTO `table_produk` (`id_produk`, `nama_produk`, `detail_produk`, `nomor_
 	(4, 'Dunmil', 'Dunmil', '', 494, '0', '2024-09-03 15:58:26', '2024-09-04 08:09:22', NULL),
 	(6, 'Dunmilllll', 'tessss', '', 0, '0', '2024-09-03 16:09:43', '2024-09-03 16:10:50', NULL),
 	(7, 'Dunmilssada', 'adadad', '240903041111', 0, '0', '2024-09-03 16:10:52', '2024-09-03 16:11:11', NULL),
-	(8, '-', '', '', 0, '0', '2024-09-03 16:11:12', '2024-09-03 16:11:12', NULL);
+	(8, 'tess', 'tesss', '240904071535', 0, '0', '2024-09-03 16:11:12', '2024-09-04 19:15:35', NULL),
+	(9, '-', '', '', 0, '0', '2024-09-04 19:15:37', '2024-09-04 19:15:37', NULL);
 /*!40000 ALTER TABLE `table_produk` ENABLE KEYS */;
 
 -- Dumping structure for table bang_benk.table_stok
@@ -120,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `table_stok` (
   PRIMARY KEY (`id_stok`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table bang_benk.table_stok: ~3 rows (approximately)
+-- Dumping data for table bang_benk.table_stok: ~2 rows (approximately)
 /*!40000 ALTER TABLE `table_stok` DISABLE KEYS */;
 INSERT INTO `table_stok` (`id_stok`, `id_produk`, `stok_awal`, `stok_akhir`, `harga_modal`, `harga_jual`, `keuntungan`, `created_at`, `updated_at`) VALUES
 	(1, 2, 100, 2, 130000, 150000, 40000, '2024-09-04 00:00:00', '2024-09-04 08:09:22'),
@@ -139,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `table_transaksi` (
   PRIMARY KEY (`id_transaksi`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table bang_benk.table_transaksi: ~0 rows (approximately)
+-- Dumping data for table bang_benk.table_transaksi: ~4 rows (approximately)
 /*!40000 ALTER TABLE `table_transaksi` DISABLE KEYS */;
 INSERT INTO `table_transaksi` (`id_transaksi`, `id_user`, `total_harga`, `status_transaksi`, `created_at`, `updated_at`) VALUES
 	(1, 5, 600000, '', '2024-09-04 08:00:34', NULL),
@@ -148,6 +149,29 @@ INSERT INTO `table_transaksi` (`id_transaksi`, `id_user`, `total_harga`, `status
 	(4, 5, 2100000, '', '2024-09-04 08:09:21', NULL);
 /*!40000 ALTER TABLE `table_transaksi` ENABLE KEYS */;
 
+-- Dumping structure for table bang_benk.table_user
+CREATE TABLE IF NOT EXISTS `table_user` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `nama_user` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `profil_status` varchar(5) NOT NULL,
+  `role` varchar(50) NOT NULL,
+  `last_login` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table bang_benk.table_user: ~5 rows (approximately)
+/*!40000 ALTER TABLE `table_user` DISABLE KEYS */;
+INSERT INTO `table_user` (`id`, `nama_user`, `email`, `password`, `profil_status`, `role`, `last_login`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Admin', 'admin@gmail.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '', 'administrator', '2024-08-18 16:46:51', '2024-08-18 16:46:51', NULL, NULL),
+	(2, 'budi', 'budi@gamil.com', '24263bfaefb124c488c2f5e63d1d30b418f51d0d6f5b380aa1956ec40ea57278', 'nonak', 'pelanggan', '2024-09-03 13:20:24', '2024-09-03 13:20:24', '2024-09-03 13:20:24', NULL),
+	(3, 'ayo', 'ayo@gamil.com', 'de4baa02c4855872bba5464749157d06151ed215c6fd39a07454344de8d9a2bf', 'nonak', 'pelanggan', '2024-09-04 01:11:53', '2024-09-04 01:11:53', '2024-09-04 01:11:53', NULL),
+	(4, 'nani', 'nani@gmail.com', '981fbfcb3e841a61695dcd81873ba7f52562d4a3f0bb8d69e49a06202abba5b0', 'nonak', 'pelanggan', '2024-09-04 01:13:11', '2024-09-04 01:13:11', '2024-09-04 01:13:11', NULL),
+	(5, 'nana', 'nana@gmail.com', 'be1280997bcdafdcb05a3ac841a01da3015f82e324c3d6b38e1fafd8fda6b846', 'nonak', 'pelanggan', '2024-09-04 04:32:13', '2024-09-04 04:32:13', '2024-09-04 04:32:13', NULL);
 /*!40000 ALTER TABLE `table_user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

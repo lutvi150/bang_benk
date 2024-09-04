@@ -16,8 +16,8 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    // public string $baseURL = "http://localhost:8080";
-    public string $baseURL = BASE;
+    public string $baseURL = "http://localhost:8080";
+    // public string $baseURL = BASE;
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
@@ -161,7 +161,7 @@ class App extends BaseConfig
     public bool $forceGlobalSecureRequests = false;
 
     /**
-     * --------------------------------------------------------------------------
+     * http://localhost/naivebayes/naivebayes/config_data/3--------------------------------------------------------------------------
      * Reverse Proxy IPs
      * --------------------------------------------------------------------------
      *

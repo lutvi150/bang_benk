@@ -19,6 +19,10 @@ class TabelProduk extends Migration
                 'type' => 'varchar',
                 'constraint' => 50,
             ],
+            'barcode' => [
+                'type' => 'varchar',
+                'constraint' => 255,
+            ],
             'stiker' => [
                 'type' => 'varchar',
                 'constraint' => 50,

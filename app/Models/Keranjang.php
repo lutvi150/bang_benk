@@ -12,7 +12,7 @@ class Keranjang extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_user', 'id_produk', 'qty', 'harga', 'id_transaksi', 'total_harga', 'id_stok', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['id_user', 'id_produk', 'qty', 'harga', 'id_transaksi', 'total_harga', 'id_stok', 'created_at', 'jenis_transaksi', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

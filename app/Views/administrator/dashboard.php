@@ -7,7 +7,7 @@
                 <div class="analytics-sparkle-line reso-mg-b-30">
                     <div class="analytics-content">
                         <h5>Jumla Produk</h5>
-                        <h2><span class="counter">15</span> <span class="tuition-fees">Produk</span></h2>
+                        <h2><span class="counter"><?= $produk ?></span> <span class="tuition-fees">Produk</span></h2>
                         <span class="text-success">100%</span>
                         <div class="progress m-b-0">
                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"> <span class="sr-only">20% Complete</span> </div>
@@ -19,7 +19,7 @@
                 <div class="analytics-sparkle-line reso-mg-b-30">
                     <div class="analytics-content">
                         <h5>Jumlah Transaksi</h5>
-                        <h2><span class="counter">11</span> <span class="tuition-fees"> Transaksi</span></h2>
+                        <h2><span class="counter"><?= $transaksi ?></span> <span class="tuition-fees"> Transaksi</span></h2>
                         <span class="text-danger">100%</span>
                         <div class="progress m-b-0">
                             <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"> <span class="sr-only">230% Complete</span> </div>
@@ -31,7 +31,7 @@
                 <div class="analytics-sparkle-line reso-mg-b-30 table-mg-t-pro dk-res-t-pro-30">
                     <div class="analytics-content">
                         <h5>Total User</h5>
-                        <h2><span class="counter">3</span> <span class="tuition-fees">Pengguna</span></h2>
+                        <h2><span class="counter"><?= $user ?></span> <span class="tuition-fees">Pengguna</span></h2>
                         <span class="text-info">100%</span>
                         <div class="progress m-b-0">
                             <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;"> <span class="sr-only">100% Complete</span> </div>
@@ -43,7 +43,7 @@
                 <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
                     <div class="analytics-content">
                         <h5>Total Transaksi</h5>
-                        <h2>Rp. <span class="counter">6000000</span> <span class="tuition-fees"></span></h2>
+                        <h2>Rp. <span class="counter"><?= number_format($total_transaksi[0]->total_harga) ?></span> <span class="tuition-fees"></span></h2>
                         <span class="text-inverse">100%</span>
                         <div class="progress m-b-0">
                             <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;"> <span class="sr-only">230% Complete</span> </div>
