@@ -2,7 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\FotoProduk;
 use App\Models\ModelUser;
+use App\Models\Produk;
+use App\Models\Stok;
 use CodeIgniter\API\ResponseTrait;
 
 class Home extends BaseController
@@ -14,8 +17,20 @@ class Home extends BaseController
     }
     public function front_page()
     {
-
-        return view('front-page');
+        $produk = new Produk();
+        $foto = new FotoProduk();
+        $stok = new Stok();
+        // new produk
+        $get_produk = $produk->where('nama_produk!=', '-')->orderBy('created_at', 'DESC')->findAll();
+        foreach ($get_produk as $key => $value) {
+            $result[] = $value;
+            $value->{'foto_produk'} = $foto->where('id_produk', $value->id_produk)->findAll();
+            $value->{'harga'} = $stok->where('id_produk', $value->id_produk)->orderBy('created_at', 'ASC')->first();
+        }
+        // return $this->respond($result, 200);
+        // exit;
+        $data['produk'] = $result;
+        return view('front-page', $data);
     }
     public function login()
     {
@@ -97,7 +112,7 @@ class Home extends BaseController
     {
         $session = \Config\Services::session();
         $session->destroy();
-        return redirect()->to('shop-login');
+        return redirect()->to('/');
     }
     public function register()
     {

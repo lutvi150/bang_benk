@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Produk extends Model
+class Keranjang extends Model
 {
-    protected $table            = 'table_produk';
-    protected $primaryKey       = 'id_produk';
+    protected $table            = 'table_keranjang';
+    protected $primaryKey       = 'id_keranjang';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_produk', 'detail_produk', 'stiker', 'nomor_registrasi_produk', 'stok', 'created_at', 'updated_at',];
+    protected $allowedFields    = ['id_user', 'id_produk', 'qty', 'harga', 'id_transaksi', 'total_harga', 'id_stok', 'created_at', 'updated_at'];
 
-    protected bool $allowEmptyInserts = true;
+    protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
     protected array $casts = [];

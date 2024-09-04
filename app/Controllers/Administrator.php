@@ -136,10 +136,35 @@ class Administrator extends BaseController
     function produk()
     {
         $produk = new Produk();
+        $stok = new Stok();
         $data['head'] = 'Produk';
         $data['breadcrumb'] = 'Produk';
-        $data['produk'] = $produk->findAll();
+        // $data['produk'] = $produk->findAll();
+        $get_produk = $produk->where('nama_produk !=', '-')->findAll();
+        if ($get_produk) {
+            foreach ($get_produk as $key => $value) {
+                $harga_jual = $stok->where('id_produk', $value->id_produk,)->orderBy('created_at', 'DESC')->first();
+                $terjual = $stok->where('id_produk', $value->id_produk)->selectSum('stok_akhir')->findAll();
+                $result[] = $value;
+                $value->{'harga_jual'} = $harga_jual == null ? 0 : $harga_jual->harga_jual;
+                $value->{'terjual'} = $terjual[0]->stok_akhir == null ? 0 : $terjual[0]->stok_akhir;
+                $value->{'transaksi'} = $this->count_transaksi($value->id_produk);
+            }
+        }
+        $data['produk'] = $result;
+        // return $this->respond($data, 200);
         return view('administrator/produk', $data);
+    }
+    function count_transaksi($id_produk)
+    {
+        $stok = new Stok();
+        $transaksi = $stok->where('id_produk', $id_produk)->findAll();
+        $result = [];
+        foreach ($transaksi as $key => $value) {
+            $result[] = $value->harga_jual * $value->stok_akhir;
+        }
+        $sum = array_sum($result);
+        return $sum;
     }
     function produk_add()
     {

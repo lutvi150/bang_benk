@@ -38,7 +38,7 @@
                         <li><a href="#">Hello <?= $session->get('nama_user') ?></a></li>
                         <li><a href="<?= base_url('logout') ?>">Logout</a></li>
                     <?php else: ?>
-                        <li><a href="<?= base_url('shope-login') ?>">Log In</a></li>
+                        <li><a href="<?= base_url('shop-login') ?>">Log In</a></li>
                     <?php endif; ?>
 
                 </ul>

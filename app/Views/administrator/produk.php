@@ -29,13 +29,13 @@
                                     <tr>
                                         <th data-field="state" data-checkbox="true"></th>
                                         <th data-field="id">No.</th>
-                                        <th data-field="name" data-editable="true">Registrasi Produk</th>
-                                        <th data-field="email" data-editable="true">Nama Produk</th>
-                                        <th data-field="phone" data-editable="true">Harga Jual</th>
+                                        <th data-field="name">Registrasi Produk</th>
+                                        <th data-field="email">Nama Produk</th>
+                                        <th data-field="phone">Harga Jual</th>
                                         <th data-field="complete">Stok</th>
-                                        <th data-field="task" data-editable="true">Terjual</th>
-                                        <th data-field="task" data-editable="true">Diskon</th>
-                                        <th data-field="date" data-editable="true">Total Transaksi</th>
+                                        <th data-field="">Terjual</th>
+                                        <th data-field="task">Diskon</th>
+                                        <th data-field="date">Total Transaksi</th>
                                         <th data-field="action">Action</th>
                                     </tr>
                                 </thead>
@@ -46,13 +46,13 @@
                                             <td><?= $key + 1  ?></td>
                                             <td><?= $value->nomor_registrasi_produk ?></td>
                                             <td><?= $value->nama_produk ?></td>
-                                            <td></td>
+                                            <td>Rp. <?= number_format($value->harga_jual) ?></td>
                                             <td>
                                                 <a href="<?= base_url('administrator/produk/stok/' . $value->id_produk) ?>" class="btn btn-success btn-xs"><?= $value->stok ?></a>
                                             </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?= $value->terjual ?> Pcs</td>
+                                            <td>0%</td>
+                                            <td>Rp.<?= number_format($value->transaksi) ?></td>
                                             <td>
                                                 <a href="<?= base_url('administrator/produk/edit/' . $value->id_produk) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
                                                 <button class="btn btn-danger btn-xs" onclick="deleteConfirm('<?= $value->id_produk ?>')"><i class="fa fa-trash"></i></button>

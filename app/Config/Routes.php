@@ -41,3 +41,11 @@ $routes->group('administrator', static function ($routes) {
     $routes->get('produk/gambar/priview/(:num)', 'Administrator::produk_gambar_priview/$1');
 });
 $routes->get('test', 'Home::tes');
+$routes->group('pelanggan', static function ($routes) {
+    $routes->get('dashboard', 'Pelanggan::dashboard');
+    $routes->get('keranjang/(:num)', 'Pelanggan::produk');
+    $routes->post('keranjang', 'Pelanggan::keranjang_store');
+    $routes->get('keranjang', 'Pelanggan::keranjang');
+    $routes->get('produk/(:num)', 'Pelanggan::produk_detail/$1');
+    $routes->get('checkout', 'Pelanggan::checkout');
+});
