@@ -7,6 +7,7 @@ use App\Models\FotoProduk;
 use App\Models\ModelUser;
 use App\Models\Produk;
 use App\Models\Stok;
+use App\Models\Transaksi;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Files\File;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -131,6 +132,15 @@ class Administrator extends BaseController
         $data['breadcrumb'] = 'Data Pengguna';
         $data['user'] = $user->orderBy('id', 'DESC')->findAll();
         return view('administrator/user', $data);
+    }
+    // use for transaksi
+    function transaksi()
+    {
+        $transaksi = new Transaksi();
+        $data['head'] = 'Transaksi';
+        $data['breadcrumb'] = 'Data Transaksi';
+        $data['transaksi'] = $transaksi->join('table_user');
+        return view('administrator/transaksi', $data);
     }
     // use for produk
     function produk()

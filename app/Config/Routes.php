@@ -39,6 +39,8 @@ $routes->group('administrator', static function ($routes) {
     $routes->post('produk/gambar/delete', 'Administrator::produk_gambar_delete');
     $routes->get('produk/gambar/(:num)', 'Administrator::produk_gambar/$1');
     $routes->get('produk/gambar/priview/(:num)', 'Administrator::produk_gambar_priview/$1');
+    // transaksi
+    $routes->get('transaksi', 'Administrator::transaksi');
 });
 $routes->get('test', 'Home::tes');
 $routes->group('pelanggan', static function ($routes) {
