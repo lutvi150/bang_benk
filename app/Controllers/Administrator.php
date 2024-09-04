@@ -10,7 +10,6 @@ use App\Models\Stok;
 use App\Models\Transaksi;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Files\File;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class Administrator extends BaseController
 {
@@ -29,7 +28,7 @@ class Administrator extends BaseController
         return view('administrator/dashboard', $data);
     }
     // use for gamabr
-    function produk_gambar_upload()
+    public function produk_gambar_upload()
     {
         $id_produk = $this->request->getPost('id_produk');
         $foto = new FotoProduk();
@@ -45,18 +44,18 @@ class Administrator extends BaseController
                     'is_image[foto_produk]',
                     'mime_in[foto_produk,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
                     'max_size[foto_produk,1000]',
-                    'max_dims[foto_produk,1024,768]',
+                    // 'max_dims[foto_produk,1024,768]',
                 ],
                 'errors' => [
                     'uploaded' => 'File tidak terupload',
                     'is_image' => 'File bukan gambar',
                     'mime_in' => 'Ekstensi file tidak sesuai',
                     'max_size' => 'Ukuran file melebihi 100KB',
-                    'max_dims' => 'Dimensi file melebihi 1024x768',
+                    // 'max_dims' => 'Dimensi file melebihi 1024x768',
                 ],
             ],
         ];
-        if (! $this->validateData([], $validationRule)) {
+        if (!$this->validateData([], $validationRule)) {
             $response = [
                 'status' => 'validation_failed',
                 'message' => $this->validator->getErrors(),
@@ -77,7 +76,7 @@ class Administrator extends BaseController
         }
         return $this->respond($response, 200);
     }
-    function produk_gambar_delete()
+    public function produk_gambar_delete()
     {
         $foto = new FotoProduk();
         $id_gambar = $this->request->getPost('id_gambar');
@@ -90,17 +89,17 @@ class Administrator extends BaseController
                     unlink(ROOTPATH . 'public/uploads/produk/' . $check_gambar->foto_produk);
                     $response = [
                         'status' => 'success',
-                        'message' => 'File berhasil dihapus'
+                        'message' => 'File berhasil dihapus',
                     ];
                 }
                 $response = [
                     'status' => 'success',
-                    'message' => 'gambar berhasil dihapus'
+                    'message' => 'gambar berhasil dihapus',
                 ];
             } else {
                 $response = [
                     'status' => 'failed',
-                    'message' => 'gambar gagal dihapus'
+                    'message' => 'gambar gagal dihapus',
                 ];
             }
         } else {
@@ -111,7 +110,7 @@ class Administrator extends BaseController
         }
         return $this->respond($response, 200);
     }
-    function produk_gambar($id_produk)
+    public function produk_gambar($id_produk)
     {
         $foto = new FotoProduk();
         $foto_produk = $foto->where('id_produk', $id_produk)->findAll();
@@ -121,7 +120,7 @@ class Administrator extends BaseController
         ];
         return $this->respond($response, 200);
     }
-    function produk_gambar_priview($id)
+    public function produk_gambar_priview($id)
     {
         $foto = new FotoProduk();
         $foto_produk = $foto->where('id_foto_produk', $id)->first();
@@ -132,7 +131,7 @@ class Administrator extends BaseController
         return $this->respond($response, 200);
     }
     // use for user
-    function user()
+    public function user()
     {
         $user = new ModelUser();
         $data['head'] = 'User';
@@ -141,7 +140,7 @@ class Administrator extends BaseController
         return view('administrator/user', $data);
     }
     // use for transaksi
-    function transaksi()
+    public function transaksi()
     {
         $transaksi = new Transaksi();
         $data['head'] = 'Transaksi';
@@ -150,14 +149,14 @@ class Administrator extends BaseController
         // return $this->respond($data, 200);
         return view('administrator/transaksi', $data);
     }
-    function transaksi_manual()
+    public function transaksi_manual()
     {
         $data['head'] = 'Transaksi Manual';
         $data['breadcrumb'] = 'Transaksi Manual';
         return view('administrator/transaksi_manual', $data);
     }
     // use for produk
-    function produk()
+    public function produk()
     {
         $generator = new \Picqer\Barcode\BarcodeGeneratorHTML();
         $produk = new Produk();
@@ -169,7 +168,7 @@ class Administrator extends BaseController
         if ($get_produk) {
             foreach ($get_produk as $key => $value) {
                 $barcode = $generator->getBarcode($value->nomor_registrasi_produk, $generator::TYPE_EAN_5);
-                $harga_jual = $stok->where('id_produk', $value->id_produk,)->orderBy('created_at', 'DESC')->first();
+                $harga_jual = $stok->where('id_produk', $value->id_produk, )->orderBy('created_at', 'DESC')->first();
                 $terjual = $stok->where('id_produk', $value->id_produk)->selectSum('stok_akhir')->findAll();
                 $result[] = $value;
                 $value->{'harga_jual'} = $harga_jual == null ? 0 : $harga_jual->harga_jual;
@@ -183,7 +182,7 @@ class Administrator extends BaseController
         // exit;
         return view('administrator/produk', $data);
     }
-    function count_transaksi($id_produk)
+    public function count_transaksi($id_produk)
     {
         $stok = new Stok();
         $transaksi = $stok->where('id_produk', $id_produk)->findAll();
@@ -194,14 +193,14 @@ class Administrator extends BaseController
         $sum = array_sum($result);
         return $sum;
     }
-    function produk_add()
+    public function produk_add()
     {
         $produk = new Produk();
         $data['head'] = 'Tambah Produk';
         $data['breadcrumb'] = 'Tambah Produk';
         $check_produk = $produk->where('nama_produk', '-')->first();
         $data['type'] = 'add';
-        $data['produk'] = (object)['nama_produk' => '', 'detail_produk' => ''];
+        $data['produk'] = (object) ['nama_produk' => '', 'detail_produk' => ''];
         if ($check_produk) {
             $data['id_produk'] = $check_produk->id_produk;
         } else {
@@ -210,7 +209,7 @@ class Administrator extends BaseController
         }
         return view('administrator/produk_tambah', $data);
     }
-    function produk_store()
+    public function produk_store()
     {
         $produk = new Produk();
         $type = $this->request->getPost('type');
@@ -250,7 +249,7 @@ class Administrator extends BaseController
                     $store = $produk->update($id_produk, $update);
                     $response = [
                         'status' => 'success',
-                        'message' => 'produk berhasil ditambahkan'
+                        'message' => 'produk berhasil ditambahkan',
                     ];
                 }
             }
@@ -258,12 +257,12 @@ class Administrator extends BaseController
             $store = $produk->update($id_produk, $update);
             $response = [
                 'status' => 'success',
-                'message' => 'produk berhasil diupdate'
+                'message' => 'produk berhasil diupdate',
             ];
         }
         return $this->respond($response, 200);
     }
-    function produk_edit($id)
+    public function produk_edit($id)
     {
         $produk = new Produk();
         $data['head'] = 'Edit Produk';
@@ -273,24 +272,24 @@ class Administrator extends BaseController
         $data['id_produk'] = $id;
         return view('administrator/produk_tambah', $data);
     }
-    function produk_delete($id)
+    public function produk_delete($id)
     {
         $produk = new Produk();
         $delete = $produk->delete($id);
         if ($delete) {
             $response = [
                 'status' => 'success',
-                'message' => 'produk berhasil dihapus'
+                'message' => 'produk berhasil dihapus',
             ];
         } else {
             $response = [
                 'status' => 'failed',
-                'message' => 'produk gagal dihapus'
+                'message' => 'produk gagal dihapus',
             ];
         }
         return $this->respond($response, 200);
     }
-    function produk_stok($id)
+    public function produk_stok($id)
     {
         $stok = new Stok();
         $data['head'] = 'Stok Produk';
@@ -299,7 +298,7 @@ class Administrator extends BaseController
         $data['id_produk'] = $id;
         return view('administrator/stok', $data);
     }
-    function produk_stok_store($id_produk)
+    public function produk_stok_store($id_produk)
     {
         $stok = new Stok();
         $type = $this->request->getPost('type');
@@ -321,19 +320,19 @@ class Administrator extends BaseController
         ], [
             'stok_awal' => [
                 'required' => 'Stok awal tidak boleh kosong',
-                'numeric' => 'Stok awal harus berupa angka'
+                'numeric' => 'Stok awal harus berupa angka',
             ],
             'harga_modal' => [
                 'required' => 'Harga modal tidak boleh kosong',
-                'numeric' => 'Harga modal harus berupa angka'
+                'numeric' => 'Harga modal harus berupa angka',
             ],
             'harga_jual' => [
                 'required' => 'Harga jual tidak boleh kosong',
-                'numeric' => 'Harga jual harus berupa angka'
+                'numeric' => 'Harga jual harus berupa angka',
             ],
             'tanggal_stoak' => [
                 'required' => 'Tanggal stok tidak boleh kosong',
-            ]
+            ],
         ]);
         if (!$validation->withRequest($this->request)->run()) {
             $response = [
@@ -349,7 +348,7 @@ class Administrator extends BaseController
                 $store = $stok->insert($data);
                 $response = [
                     'status' => 'success',
-                    'message' => 'produk berhasil ditambahkan'
+                    'message' => 'produk berhasil ditambahkan',
                 ];
             } else {
                 $stok_lama = $stok->where('id_stok', $id_stok)->first();
@@ -358,14 +357,14 @@ class Administrator extends BaseController
                 $store = $stok->update($id_produk, $data);
                 $response = [
                     'status' => 'success',
-                    'message' => 'produk berhasil diupdate'
+                    'message' => 'produk berhasil diupdate',
                 ];
             }
         }
 
         return $this->respond($response, 200);
     }
-    function produk_stok_delete($id_stok)
+    public function produk_stok_delete($id_stok)
     {
         $stok = new Stok();
         $produk = new Produk();
@@ -376,17 +375,17 @@ class Administrator extends BaseController
         if ($delete) {
             $response = [
                 'status' => 'success',
-                'message' => 'produk berhasil dihapus'
+                'message' => 'produk berhasil dihapus',
             ];
         } else {
             $response = [
                 'status' => 'failed',
-                'message' => 'produk gagal dihapus'
+                'message' => 'produk gagal dihapus',
             ];
         }
         return $this->respond($response, 200);
     }
-    function produk_stok_edit()
+    public function produk_stok_edit()
     {
         $stok = new Stok();
         $id_stok = $this->request->getPost('id_stok');
