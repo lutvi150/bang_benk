@@ -44,15 +44,13 @@ class Administrator extends BaseController
                     'uploaded[foto_produk]',
                     'is_image[foto_produk]',
                     'mime_in[foto_produk,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
-                    'max_size[foto_produk,1000]',
-                    'max_dims[foto_produk,1024,768]',
+                    'max_size[foto_produk,2000]',
                 ],
                 'errors' => [
                     'uploaded' => 'File tidak terupload',
                     'is_image' => 'File bukan gambar',
                     'mime_in' => 'Ekstensi file tidak sesuai',
                     'max_size' => 'Ukuran file melebihi 100KB',
-                    'max_dims' => 'Dimensi file melebihi 1024x768',
                 ],
             ],
         ];
