@@ -163,14 +163,15 @@ class Administrator extends BaseController
         $mpdf = new \Mpdf\Mpdf();
         $get_produk = $produk->where('nama_produk !=', '-')->findAll();
 
-        foreach ($get_produk as $key => $value) {
-            file_put_contents('uploads/barcode/barcode_' . $value->id_produk . '.png', $generator->getBarcode($value->nomor_registrasi_produk, $generator::TYPE_CODE_128));
+        // foreach ($get_produk as $key => $value) {
+        //     file_put_contents('uploads/barcode/barcode_' . $value->id_produk . '.png', $generator->getBarcode($value->nomor_registrasi_produk, $generator::TYPE_CODE_128));
 
-        }
-        $template='<table><tr><td>Nama Produk</td><td>Nomor Registrasi</td><td>Barcode</td></tr><tr><td>nama</td><td></td><td><img src="'.base_url().'.uploads/barcode/barcode_' . 1.'.png'.'" alt=""></td></tr>"</table>';
+        // }
+        $template = '<table><tr><td>Nama Produk</td><td>Nomor Registrasi</td><td>Barcode</td></tr><tr><td>nama</td><td></td><td><img src="' . base_url() . '.uploads/barcode/barcode_' . 1 . '.png' . '" alt=""></td></tr>"</table>';
         $data['produk'] = $get_produk;
         // $mpdf->WriteHTML($template);
         // $mpdf->Output(); //option "D" save fi
+        return $this->respond($template, 200);
     }
     public function produk()
     {
