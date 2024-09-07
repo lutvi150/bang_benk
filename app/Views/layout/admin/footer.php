@@ -73,5 +73,5 @@
    <script src="<?=base_url()?>assets/form-master/src/jquery.form.js"></script>
    <script src="<?=base_url()?>assets/sweetalert2/dist/sweetalert2.js"></script>
    <script>
-      let url = "<?=base_url('index.php')?>"
+      let url = "<?=base_url('index.php/')?>"
    </script>

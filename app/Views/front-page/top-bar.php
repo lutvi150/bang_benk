@@ -36,6 +36,7 @@
                     <?php $session = \Config\Services::session();?>
                     <?php if ($session->get('login') == true): ?>
                         <li><a href="#">Hello <?=$session->get('nama_user')?></a></li>
+                        <li><a href="<?=base_url('index.php')?>">Transaksi</a></li>
                         <li><a href="<?=base_url('index.php/logout')?>">Logout</a></li>
                     <?php else: ?>
                         <li><a href="<?=base_url('index.php/shop-login')?>">Log In</a></li>
