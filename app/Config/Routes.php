@@ -39,6 +39,7 @@ $routes->group('administrator', static function ($routes) {
     $routes->post('produk/gambar/delete', 'Administrator::produk_gambar_delete');
     $routes->get('produk/gambar/(:num)', 'Administrator::produk_gambar/$1');
     $routes->get('produk/gambar/priview/(:num)', 'Administrator::produk_gambar_priview/$1');
+    $routes->get('produk/cetak','Administrator::produk_cetak');
     // transaksi
     $routes->get('transaksi', 'Administrator::transaksi');
     // transaksi manual

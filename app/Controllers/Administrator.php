@@ -156,6 +156,22 @@ class Administrator extends BaseController
         return view('administrator/transaksi_manual', $data);
     }
     // use for produk
+    public function produk_cetak()
+    {
+        $generator = new \Picqer\Barcode\BarcodeGeneratorHTML();
+        $produk = new Produk();
+        $mpdf = new \Mpdf\Mpdf();
+        $get_produk = $produk->where('nama_produk !=', '-')->findAll();
+
+        foreach ($get_produk as $key => $value) {
+            file_put_contents('uploads/barcode/barcode_' . $value->id_produk . '.png', $generator->getBarcode($value->nomor_registrasi_produk, $generator::TYPE_CODE_128));
+
+        }
+        $template='<table><tr><td>Nama Produk</td><td>Nomor Registrasi</td><td>Barcode</td></tr><tr><td>nama</td><td></td><td><img src="'.base_url().'.uploads/barcode/barcode_' . 1.'.png'.'" alt=""></td></tr>"</table>';
+        $data['produk'] = $get_produk;
+        // $mpdf->WriteHTML($template);
+        // $mpdf->Output(); //option "D" save fi
+    }
     public function produk()
     {
         $generator = new \Picqer\Barcode\BarcodeGeneratorHTML();
@@ -167,7 +183,7 @@ class Administrator extends BaseController
         $get_produk = $produk->where('nama_produk !=', '-')->findAll();
         if ($get_produk) {
             foreach ($get_produk as $key => $value) {
-                $barcode = $generator->getBarcode($value->nomor_registrasi_produk, $generator::TYPE_EAN_5);
+                $barcode = $generator->getBarcode($value->nomor_registrasi_produk, $generator::TYPE_CODE_128);
                 $harga_jual = $stok->where('id_produk', $value->id_produk, )->orderBy('created_at', 'DESC')->first();
                 $terjual = $stok->where('id_produk', $value->id_produk)->selectSum('stok_akhir')->findAll();
                 $result[] = $value;
