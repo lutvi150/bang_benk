@@ -30,15 +30,15 @@
             <!-- BEGIN TOP BAR MENU -->
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="<?= base_url('shop-account') ?>">Akun Saya</a></li>
-                    <li><a href="<?= base_url('shop-wishlist') ?>">My Wishlist</a></li>
-                    <li><a href="<?= base_url('shop-checkout') ?>">Checkout</a></li>
+                    <li><a href="<?= base_url('index.php/shop-account') ?>">Akun Saya</a></li>
+                    <li><a href="<?= base_url('index.php/shop-wishlist') ?>">My Wishlist</a></li>
+                    <li><a href="<?= base_url('index.php/shop-checkout') ?>">Checkout</a></li>
                     <?php $session = \Config\Services::session(); ?>
                     <?php if ($session->get('login') == true): ?>
                         <li><a href="#">Hello <?= $session->get('nama_user') ?></a></li>
-                        <li><a href="<?= base_url('logout') ?>">Logout</a></li>
+                        <li><a href="<?= base_url('index.php/logout') ?>">Logout</a></li>
                     <?php else: ?>
-                        <li><a href="<?= base_url('shop-login') ?>">Log In</a></li>
+                        <li><a href="<?= base_url('index.php/shop-login') ?>">Log In</a></li>
                     <?php endif; ?>
 
                 </ul>
