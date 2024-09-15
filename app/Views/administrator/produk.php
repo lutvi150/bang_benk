@@ -1,5 +1,5 @@
-<?= $this->extend('layout/admin/template') ?>
-<?= $this->section('content') ?>
+<?=$this->extend('layout/admin/template')?>
+<?=$this->section('content')?>
 
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
@@ -13,9 +13,9 @@
                         </div>
                     </div>
                     <div class="sparkline13-graph">
-                        <a href="<?= base_url('administrator/produk/add') ?>">
+                        <a href="<?=base_url('index.php/administrator/produk/add')?>">
                             <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Produk</button></a>
-                        <button type="button" class="btn btn-success"><i class="fa fa-print"></i> Cetak</button></a>
+                        <a href="<?=base_url('index.php/administrator/produk/cetak')?>" target="_blank" type="button" class="btn btn-success"><i class="fa fa-print"></i> Cetak</a></a>
                         <div class="datatable-dashv1-list custom-datatable-overright">
                             <div id="toolbar">
                                 <select class="form-control dt-tb">
@@ -44,23 +44,24 @@
                                     <?php foreach ($produk as $key => $value): ?>
                                         <tr>
                                             <td></td>
-                                            <td><?= $key + 1  ?></td>
-                                            <td><?= $value->barcode ?><button class="btn btn-success btn-xs" type="button"><?= $value->nomor_registrasi_produk ?></button></td>
-                                            <td><?= $value->nama_produk ?></td>
-                                            <td>Rp. <?= number_format($value->harga_jual) ?></td>
+                                            <td><?=$key + 1?></td>
+                                            <!-- <td><?=$value->barcode?><button class="btn btn-success btn-xs" type="button"><?=$value->nomor_registrasi_produk?></button></td> -->
+                                             <td><?=$value->barcode?></td>
+                                            <td><?=$value->nama_produk?></td>
+                                            <td>Rp. <?=number_format($value->harga_jual)?></td>
                                             <td>
-                                                <a href="<?= base_url('administrator/produk/stok/' . $value->id_produk) ?>" class="btn btn-success btn-xs"><?= $value->stok ?></a>
+                                                <a href="<?=base_url('administrator/produk/stok/' . $value->id_produk)?>" class="btn btn-success btn-xs"><?=$value->stok?></a>
                                             </td>
-                                            <td><?= $value->terjual ?> Pcs</td>
+                                            <td><?=$value->terjual?> Pcs</td>
                                             <td>0%</td>
-                                            <td>Rp.<?= number_format($value->transaksi) ?></td>
+                                            <td>Rp.<?=number_format($value->transaksi)?></td>
                                             <td>
-                                                <a href="<?= base_url('administrator/produk/edit/' . $value->id_produk) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
-                                                <button class="btn btn-danger btn-xs" onclick="deleteConfirm('<?= $value->id_produk ?>')"><i class="fa fa-trash"></i></button>
+                                                <a href="<?=base_url('administrator/produk/edit/' . $value->id_produk)?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
+                                                <button class="btn btn-danger btn-xs" onclick="deleteConfirm('<?=$value->id_produk?>')"><i class="fa fa-trash"></i></button>
 
                                             </td>
                                         </tr>
-                                    <?php endforeach; ?>
+                                    <?php endforeach;?>
                                 </tbody>
                             </table>
                         </div>
@@ -70,8 +71,8 @@
         </div>
     </div>
 </div>
-<?= $this->endSection() ?>
-<?= $this->section('script') ?>
+<?=$this->endSection()?>
+<?=$this->section('script')?>
 <script>
     deleteConfirm = (id) => {
         Swal.fire({
@@ -86,7 +87,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "<?= base_url('administrator/produk/delete/') ?>" + id,
+                    url: "<?=base_url('administrator/produk/delete/')?>" + id,
                     type: "GET",
                     dataType: "JSON",
                     success: function(data) {
@@ -118,4 +119,4 @@
         })
     }
 </script>
-<?= $this->endSection() ?>
+<?=$this->endSection()?>

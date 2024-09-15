@@ -33,27 +33,27 @@
    <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/counterup/counterup-active.js"></script>
    <!-- metisMenu JS
 		============================================ -->
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/metisMenu/metisMenu.min.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/metisMenu/metisMenu-active.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/metisMenu/metisMenu.min.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/metisMenu/metisMenu-active.js"></script>
    <!-- data table JS
 		============================================ -->
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/data-table/bootstrap-table.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/data-table/tableExport.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/data-table/data-table-active.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/data-table/bootstrap-table-editable.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/data-table/bootstrap-editable.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/data-table/bootstrap-table-resizable.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/data-table/colResizable-1.5.source.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/data-table/bootstrap-table-export.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/data-table/bootstrap-table.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/data-table/tableExport.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/data-table/data-table-active.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/data-table/bootstrap-table-editable.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/data-table/bootstrap-editable.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/data-table/bootstrap-table-resizable.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/data-table/colResizable-1.5.source.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/data-table/bootstrap-table-export.js"></script>
    <!--  editable JS
 		============================================ -->
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/editable/jquery.mockjax.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/editable/mock-active.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/editable/select2.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/editable/moment.min.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/editable/bootstrap-datetimepicker.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/editable/bootstrap-editable.js"></script>
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/editable/xediable-active.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/editable/jquery.mockjax.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/editable/mock-active.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/editable/select2.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/editable/moment.min.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/editable/bootstrap-datetimepicker.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/editable/bootstrap-editable.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/editable/xediable-active.js"></script>
    <!-- tab JS
 		============================================ -->
    <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/tab.js"></script>
@@ -69,9 +69,9 @@
    <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/main.js"></script>
    <!-- tawk chat JS
 		============================================ -->
-   <script src="<?= base_url() ?>assets/theme/kiaalap-master/js/tawk-chat.js"></script>
-   <script src="<?= base_url() ?>assets/form-master/src/jquery.form.js"></script>
-   <script src="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.js"></script>
+   <script src="<?=base_url()?>assets/theme/kiaalap-master/js/tawk-chat.js"></script>
+   <script src="<?=base_url()?>assets/form-master/src/jquery.form.js"></script>
+   <script src="<?=base_url()?>assets/sweetalert2/dist/sweetalert2.js"></script>
    <script>
-      let url = "<?= base_url('index.php/') ?>"
+      let url = "<?=base_url('index.php/')?>"
    </script>
