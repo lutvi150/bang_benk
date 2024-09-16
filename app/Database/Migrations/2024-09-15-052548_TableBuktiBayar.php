@@ -4,32 +4,31 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TableTransaksi extends Migration
+class TableBuktiBayar extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_transaksi' => [
+            'id_bukti_bayar' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsignned' => true,
                 'auto_increment' => true,
             ],
-            'id_user' => [
+            'id_transaksi' => [
                 'type' => 'int',
-                'constraint' => 11,
+                'constraint' => 5,
             ],
-            'total_harga' => [
-                'type' => 'int',
-                'constraint' => 11,
-            ],
-            'nomor_transaksi' => [
+            'bukti_bayar' => [
                 'type' => 'varchar',
-                'constraint' => 50,
+                'constraint' => 255,
             ],
-            'status_transaksi' => [
+            'keterangan' => [
+                'type' => 'text',
+            ],
+            'type' => [
                 'type' => 'varchar',
-                'constraint' => 50,
+                'constraint' => 20,
             ],
             'created_at' => [
                 'type' => 'datetime',
@@ -39,12 +38,12 @@ class TableTransaksi extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id_transaksi', true);
-        $this->forge->createTable("table_transaksi");
+        $this->forge->addKey('id_bukti_bayar', true);
+        $this->forge->createTable("table_bukti_bayar");
     }
 
     public function down()
     {
-        $this->forge->dropTable("table_transaksi");
+        $this->forge->dropTable("table_bukti_bayar");
     }
 }

@@ -18,7 +18,7 @@
 
       </ul>
       <div class="text-right">
-        <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
+        <a href="<?= base_url('pelanggan/shop-cart') ?>" class="btn btn-default">Lihat Keranjang</a>
         <a href="#" onclick="check_out()" class="btn btn-primary">Checkout</a>
       </div>
     </div>

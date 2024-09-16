@@ -282,7 +282,7 @@
                 if (response.status == 'success') {
                     Swal.fire({
                         title: 'Gambar',
-                        imageUrl: url + "uploads/produk/" + response.data.foto_produk,
+                        imageUrl: base_url + "uploads/produk/" + response.data.foto_produk,
                         imageWidth: 400,
                         imageHeight: 400,
                         imageAlt: 'Gambar Produk',

@@ -35,15 +35,17 @@
  <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
  <script src="<?= base_url() ?>assets/theme/metronic-ui/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
  <script src="<?= base_url() ?>assets/theme/metronic-ui/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
- <script src="<?= base_url() ?>assets/theme/metronic-ui/assets/assets/plugins/zoom/jquery.zoom.min.js" type="text/javascript"></script><!-- product zoom -->
+ <script src="<?= base_url() ?>assets/theme/metronic-ui/assets/plugins/zoom/jquery.zoom.min.js" type="text/javascript"></script><!-- product zoom -->
  <script src="<?= base_url() ?>assets/theme/metronic-ui/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
 
  <script src="<?= base_url() ?>assets/theme/metronic-ui/assets/corporate/scripts/layout.js" type="text/javascript"></script>
  <script src="<?= base_url() ?>assets/theme/metronic-ui/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
  <script src="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.js"></script>
+ <script src="<?= base_url() ?>assets/form-master/src/jquery.form.js"></script>
  <script src="<?= base_url() ?>assets/js/front-page.js" type="text/javascript"></script>
  <script type="text/javascript">
-     let url = '<?= base_url() ?>';
+     let url = '<?= base_url('index.php/') ?>';
+     let base_url = '<?= base_url() ?>'
      jQuery(document).ready(function() {
          Layout.init();
          Layout.initOWL();

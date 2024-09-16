@@ -30,7 +30,7 @@ class Home extends BaseController
         // return $this->respond($result, 200);
         // exit;
         $data['produk'] = $result;
-        return view('front-page', $data);
+        return view('pelanggan/front-pelanggan', $data);
     }
     public function login()
     {

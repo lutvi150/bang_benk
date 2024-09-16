@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BuktiBayar;
 use App\Models\FotoProduk;
+use App\Models\Keranjang;
 use App\Models\ModelUser;
 use App\Models\Produk;
 use App\Models\Stok;
@@ -145,9 +147,66 @@ class Administrator extends BaseController
         $transaksi = new Transaksi();
         $data['head'] = 'Transaksi';
         $data['breadcrumb'] = 'Data Transaksi';
-        $data['transaksi'] = $transaksi->join('table_user', 'table_transaksi.id_user = table_user.id')->select('table_transaksi.*, table_user.nama_user,table_user.email')->orderBy('id_transaksi', 'DESC')->findAll();
+        $data['transaksi'] = $transaksi->join('table_user', 'table_transaksi.id_user = table_user.id')->select('table_transaksi.*, table_user.nama_user,table_user.email')->where('table_transaksi.status_transaksi !=', 'menunggu_pembayaran')->orderBy('id_transaksi', 'DESC')->findAll();
         // return $this->respond($data, 200);
         return view('administrator/transaksi', $data);
+    }
+    function bukti_pembayaran_view($id_transaksi)
+    {
+        $buktibayar = new BuktiBayar();
+        $check_bukti_bayar = $buktibayar->where('id_transaksi', $id_transaksi)->first();
+        $response = [
+            'status' => 'success',
+            'data' => $check_bukti_bayar,
+        ];
+        return $this->respond($response, 200);
+    }
+    function verifikasi_pembayaran()
+    {
+        $status = $this->request->getPost('status');
+        $id_transaksi = $this->request->getPost('id_transaksi');
+        $transaksi = new Transaksi();
+        if ($status == 1) {
+            $update = [
+                'status_transaksi' => 'finish'
+            ];
+            $transaksi->update($id_transaksi, $update);
+            $response = [
+                'status' => 'success',
+                'message' => 'pembayaran berhasil diverifikasi',
+            ];
+        } else {
+            $validation = \Config\Services::validation();
+            $validation->setRules([
+                'keterangan' => 'required',
+            ], [
+                'keterangan' => [
+                    'required' => 'Keterangan tidak boleh kosong',
+                ],
+            ]);
+            if (!$validation->withRequest($this->request)->run()) {
+                $response = [
+                    'status' => 'validation_failed',
+                    'message' => $validation->getErrors()['keterangan'],
+                ];
+            } else {
+                $update = [
+                    'status_transaksi' => 'tolak'
+                ];
+                $update_bukti_bayar = [
+                    'keterangan' => $this->request->getPost('keterangan')
+                ];
+                $transaksi->update($id_transaksi, $update);
+                $bukti_bayar = new BuktiBayar();
+                $up_bukti_bayar = $bukti_bayar->set($update_bukti_bayar)->where('id_transaksi', $id_transaksi)->update();
+                $response = [
+                    'status' => 'success',
+                    'message' => 'pembayaran berhasil diverifikasi',
+                ];
+            }
+        }
+
+        return $this->respond($response, 200);
     }
     public function transaksi_manual()
     {
@@ -162,15 +221,8 @@ class Administrator extends BaseController
         $produk = new Produk();
         $mpdf = new \Mpdf\Mpdf();
         $get_produk = $produk->where('nama_produk !=', '-')->findAll();
-
-        // foreach ($get_produk as $key => $value) {
-        //     file_put_contents('uploads/barcode/barcode_' . $value->id_produk . '.png', $generator->getBarcode($value->nomor_registrasi_produk, $generator::TYPE_CODE_128));
-
-        // }
         $template = '<table><tr><td>Nama Produk</td><td>Nomor Registrasi</td><td>Barcode</td></tr><tr><td>nama</td><td></td><td><img src="' . base_url() . '.uploads/barcode/barcode_' . 1 . '.png' . '" alt=""></td></tr>"</table>';
         $data['produk'] = $get_produk;
-        // $mpdf->WriteHTML($template);
-        // $mpdf->Output(); //option "D" save fi
         return $this->respond($template, 200);
     }
     public function produk()
@@ -185,7 +237,7 @@ class Administrator extends BaseController
         if ($get_produk) {
             foreach ($get_produk as $key => $value) {
                 $barcode = $generator->getBarcode($value->nomor_registrasi_produk, $generator::TYPE_CODE_128);
-                $harga_jual = $stok->where('id_produk', $value->id_produk, )->orderBy('created_at', 'DESC')->first();
+                $harga_jual = $stok->where('id_produk', $value->id_produk,)->orderBy('created_at', 'DESC')->first();
                 $terjual = $stok->where('id_produk', $value->id_produk)->selectSum('stok_akhir')->findAll();
                 $result[] = $value;
                 $value->{'harga_jual'} = $harga_jual == null ? 0 : $harga_jual->harga_jual;
@@ -410,6 +462,155 @@ class Administrator extends BaseController
         $response = [
             'status' => 'success',
             'data' => $check_stok,
+        ];
+        return $this->respond($response, 200);
+    }
+    // search for barcode scan
+    function produk_search()
+    {
+        $session = \Config\Services::session();
+        $nomor_registrasi_produk = $this->request->getPost('id_produk');
+        $produk = new Produk();
+        $stok = new Stok();
+        $keranjang = new Keranjang();
+        $get_produk = $produk->where('nomor_registrasi_produk', $nomor_registrasi_produk)->first();
+        if ($get_produk) {
+            $id_user = $session->get('id');
+            $id_produk = $get_produk->id_produk;
+            $get_data_stok = $stok->where('id_produk', value: $id_produk,)->orderBy('created_at', 'ASC')->first();
+            $check = $keranjang->where(['id_user' => $id_user, 'id_produk' => $id_produk, 'id_stok' => $get_data_stok->id_stok, 'id_transaksi' => 0])->first();
+
+            if ($check) {
+                $count_qty = $check->qty + 1;
+                $keranjang->update($check->id_keranjang, ['qty' => $count_qty, 'total_harga' => $count_qty * $check->harga]);
+                $response = [
+                    'status' => 'success',
+                    'message' => 'Jumlah produk sudah di tambah di keranjang',
+                ];
+            } else {
+                $insert = [
+                    'id_user' => $id_user,
+                    'id_produk' => $id_produk,
+                    'id_stok' => $get_data_stok->id_stok,
+                    'qty' => 1,
+                    'harga' => $get_data_stok->harga_jual,
+                    'id_transaksi' => 0,
+                    'total_harga' => 1 * $get_data_stok->harga_jual,
+                    'created_at' => date('Y-m-d H:i:s'),
+                ];
+                $keranjang->insert($insert);
+                $response = [
+                    'status' => 'success',
+                    'message' => 'Produk berhasil ditambahkan ke keranjang',
+                    'data' => $get_produk,
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 'failed',
+                'message' => 'produk tidak ditemukan',
+            ];
+        }
+        return $this->respond($response, 200);
+    }
+    function keranjang()
+    {
+        $session = \Config\Services::session();
+        $keranjang = new Keranjang();
+        $id_user = $session->get('id');
+        // $data = $keranjang->where('id_user', $id_user)->findAll();
+        $data = $keranjang->join('table_stok', 'table_keranjang.id_stok = table_stok.id_stok')->join('table_produk', 'table_keranjang.id_produk = table_produk.id_produk')->where('table_keranjang.id_user', $id_user)->where('table_keranjang.id_transaksi', 0)->select('table_keranjang.*, table_stok.harga_jual, table_produk.nama_produk')->findAll();
+        $total_harga = $keranjang->where('id_user', $id_user)->where('id_transaksi', 0)->selectSum('total_harga')->first();
+        $response = [
+            'status' => 'success',
+            'data' => $data,
+            'total_harga' => ($total_harga->total_harga),
+            'item_count' => count($data),
+
+        ];
+        return $this->respond($response, 200);
+    }
+    function keranjang_update()
+    {
+
+        $session = \Config\Services::session();
+        $keranjang = new Keranjang();
+        $id_keranjang = $this->request->getPost('id_keranjang');
+        $qty = $this->request->getPost('qty');
+        $check_keranjang = $keranjang->where('id_keranjang', $id_keranjang)->first();
+        $total_harga = $check_keranjang->harga * $qty;
+        $keranjang->update($id_keranjang, ['qty' => $qty, 'total_harga' => $total_harga]);
+        $id_user = $session->get('id');
+        $total_harga = $keranjang->where('id_user', $id_user)->where('id_transaksi', 0)->selectSum('total_harga')->first();
+        $response = [
+            'status' => 'success',
+            'total_harga' => $total_harga->total_harga,
+        ];
+        return $this->respond($response, 200);
+    }
+    function keranjang_reset()
+    {
+        $session = \Config\Services::session();
+        $id_user = $session->get('id');
+        $keranjang = new Keranjang();
+        $keranjang->where('id_user', $id_user)->where('id_transaksi', 0)->delete();
+        $response = [
+            'status' => 'success',
+            'message' => 'keranjang berhasil dikosongkan',
+        ];
+        return $this->respond($response, 200);
+    }
+    function keranjang_delete($id_keranjang)
+    {
+        $keranjang = new Keranjang();
+        $delete = $keranjang->delete($id_keranjang);
+        if ($delete) {
+            $response = [
+                'status' => 'success',
+                'message' => 'produk berhasil dihapus dari keranjang',
+            ];
+        } else {
+            $response = [
+                'status' => 'failed',
+                'message' => 'produk gagal dihapus dari keranjang',
+            ];
+        }
+        return $this->respond($response, 200);
+    }
+    function proses_transaksi()
+    {
+        $session = \Config\Services::session();
+        $transaksi = new Transaksi();
+        $keranjang = new Keranjang();
+        $produk = new Produk();
+        $id_user = $session->get('id');
+        $data = $keranjang->where('id_user', $id_user)->where('id_transaksi', 0)->findAll();
+        $total_harga = $keranjang->where('id_user', $id_user)->where('id_transaksi', 0)->selectSum('total_harga')->first();
+        $insert = [
+            'id_user' => $id_user,
+            'total_harga' => $total_harga->total_harga,
+            'nomor_transaksi' => date('ymdhis'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'status_transaksi' => 'finish',
+        ];
+        $transaksi->insert($insert);
+        $id_transaksi = $transaksi->getInsertID();
+        foreach ($data as $d) {
+            $keranjang->update($d->id_keranjang, ['id_transaksi' => $id_transaksi]);
+            $stok = new Stok();
+            $get_stok = $stok->where('id_stok', $d->id_stok)->first();
+            $get_stok->stok = $get_stok->stok_akhir + $d->qty;
+            $check_produk = $produk->where('id_produk', $d->id_produk)->first();
+            $check_produk->stok = $check_produk->stok - $d->qty;
+            $produk->update($d->id_produk, ['stok' => $check_produk->stok]);
+            $update_stok = [
+                'stok_akhir' => $get_stok->stok_akhir + $d->qty,
+                'keuntungan' => $get_stok->keuntungan + (($get_stok->harga_jual - $get_stok->harga_modal) * $d->qty)
+            ];
+            $stok->update($d->id_stok, $update_stok);
+        }
+        $response = [
+            'status' => 'success',
         ];
         return $this->respond($response, 200);
     }

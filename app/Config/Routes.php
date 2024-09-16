@@ -39,18 +39,34 @@ $routes->group('administrator', static function ($routes) {
     $routes->post('produk/gambar/delete', 'Administrator::produk_gambar_delete');
     $routes->get('produk/gambar/(:num)', 'Administrator::produk_gambar/$1');
     $routes->get('produk/gambar/priview/(:num)', 'Administrator::produk_gambar_priview/$1');
-    $routes->get('produk/cetak','Administrator::produk_cetak');
+    $routes->get('produk/cetak', 'Administrator::produk_cetak');
     // transaksi
     $routes->get('transaksi', 'Administrator::transaksi');
+    $routes->get('transaksi/detail/(:num)', 'Administrator::transaksi_detail/$1');
+    $routes->get('bukti-pembayaran/(:num)', 'Administrator::bukti_pembayaran_view/$1');
+    $routes->post('verifikasi-pembayaran', 'Administrator::verifikasi_pembayaran');
+    // search produk
+    $routes->post('produk/search', 'Administrator::produk_search');
+    $routes->get('keranjang', 'Administrator::keranjang');
+    $routes->post('keranjang/update', 'Administrator::keranjang_update');
+    $routes->get('keranjang/reset', 'Administrator::keranjang_reset');
+    $routes->get('keranjang/delete/(:num)', 'Administrator::keranjang_delete/$1');
+    $routes->get('transaksi/proses_transaksi', 'Administrator::proses_transaksi');
     // transaksi manual
     $routes->get('transaksi/manual', 'Administrator::transaksi_manual');
+    // faktur
+    $routes->get('faktur/(:num)', 'Report::faktur/$1');
 });
-$routes->get('test', 'Home::tes');
 $routes->group('pelanggan', static function ($routes) {
     $routes->get('dashboard', 'Pelanggan::dashboard');
     $routes->get('keranjang/(:num)', 'Pelanggan::produk');
     $routes->post('keranjang', 'Pelanggan::keranjang_store');
     $routes->get('keranjang', 'Pelanggan::keranjang');
+    $routes->get('shop-cart', 'Pelanggan::keranjang_view');
     $routes->get('produk/(:num)', 'Pelanggan::produk_detail/$1');
     $routes->get('checkout', 'Pelanggan::checkout');
+    $routes->get('transaksi', 'Pelanggan::transaksi');
+    $routes->post('bukti-pembayaran', 'Pelanggan::bukti_pembayaran_upload');
+    $routes->get('bukti-pembayaran/(:num)', 'Pelanggan::bukti_pembayaran_view/$1');
+    $routes->get('faktur/(:num)', 'Report::faktur/$1');
 });

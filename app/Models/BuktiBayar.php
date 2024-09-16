@@ -4,24 +4,24 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Transaksi extends Model
+class BuktiBayar extends Model
 {
-    protected $table            = 'table_transaksi';
-    protected $primaryKey       = 'id_transaksi';
+    protected $table            = 'table_bukti_bayar';
+    protected $primaryKey       = 'id_bukti_bayar';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_transaksi', 'id_user', 'total_harga', 'status_transaksi', 'nomor_transaksi', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['id_transaksi', 'bukti_bayar', 'keterangan', 'type', 'created_at', 'updated_at'];
 
-    protected bool $allowEmptyInserts = false;
+    protected bool $allowEmptyInserts = true;
     protected bool $updateOnlyChanged = true;
 
     protected array $casts = [];
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
