@@ -42,8 +42,14 @@ count_keranjang = () => {
             $('.top-cart-info-value').text("Rp. " + response.total_harga);
             let html = "";
             $.each(response.data, function (indexInArray, valueOfElement) {
+                let foto = "";
+                if (valueOfElement.foto == null) {
+                    foto = base_url + "uploads/notfoud.jpg";
+                } else {
+                    foto = base_url + "uploads/produk/" + valueOfElement.foto.foto_produk;
+                }
                 html += `<li>
-          <a href="shop-item.html"><img src="${url}/uploads/notfoud.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+          <a href="shop-item.html"><img src="${foto}" alt="${valueOfElement.nama_produk}" width="37" height="34"></a>
           <span class="cart-content-count">x ${valueOfElement.qty}</span>
           <strong><a href="#">${valueOfElement.nama_produk}</a></strong>
           <em>Rp ${valueOfElement.total_harga}</em>

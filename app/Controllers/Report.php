@@ -115,8 +115,8 @@ Email: info@bangbenkbacco.com<br /></td>
 <thead>
 <tr>
 <td width="15%">No.Produk</td>
-<td width="10%">Nama Produk</td>
-<td width="45%">Harga Satuan</td>
+<td width="45%">Nama Produk</td>
+<td width="10%">Harga Satuan</td>
 <td width="15%">Jumlah</td>
 <td width="15%">Total</td>
 </tr>
@@ -157,5 +157,6 @@ Email: info@bangbenkbacco.com<br /></td>
         $mpdf->WriteHTML($html);
 
         $mpdf->Output();
+        exit;
     }
 }

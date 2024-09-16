@@ -104,11 +104,17 @@ class Pelanggan extends BaseController
         $keranjang = new Keranjang();
         $id_user = $session->get('id');
         // $data = $keranjang->where('id_user', $id_user)->findAll();
+        $foto_produk = new FotoProduk();
         $data = $keranjang->join('table_stok', 'table_keranjang.id_stok = table_stok.id_stok')->join('table_produk', 'table_keranjang.id_produk = table_produk.id_produk')->where('table_keranjang.id_user', $id_user)->where('table_keranjang.id_transaksi', 0)->select('table_keranjang.*, table_stok.harga_jual, table_produk.nama_produk')->findAll();
         $total_harga = $keranjang->where('id_user', $id_user)->where('id_transaksi', 0)->selectSum('total_harga')->first();
+        $result = null;
+        foreach ($data as $key => $value) {
+            $result[] = $value;
+            $value->{'foto'} = $foto_produk->where('id_produk', $value->id_produk)->first();
+        }
         $response = [
             'status' => 'success',
-            'data' => $data,
+            'data' => $result,
             'total_harga' => number_format($total_harga->total_harga),
             'item_count' => count($data),
 
