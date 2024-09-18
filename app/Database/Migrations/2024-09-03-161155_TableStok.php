@@ -44,6 +44,12 @@ class TableStok extends Migration
                 'constraint' => 11,
                 'null' => true,
             ],
+            'tgl_produksi' => [
+                'type' => 'datetime'
+            ],
+            'tgl_exp' => [
+                'type' => 'datetime'
+            ],
             'created_at' => [
                 'type' => 'datetime',
             ],

@@ -378,6 +378,8 @@ class Administrator extends BaseController
             'stok_awal' => $stok_awal,
             'harga_modal' => $this->request->getPost('harga_modal'),
             'harga_jual' => $this->request->getPost('harga_jual'),
+            'tgl_produksi' => $this->request->getPost('tgl_produksi'),
+            'tgl_exp' => $this->request->getPost('tgl_exp'),
             'created_at' => $this->request->getPost('tanggal_stok'),
         ];
         $validation = \Config\Services::validation();
@@ -386,6 +388,8 @@ class Administrator extends BaseController
             'harga_modal' => 'required|numeric',
             'harga_jual' => 'required|numeric',
             'tanggal_stok' => 'required',
+            'tgl_produksi' => 'required',
+            'tgl_exp' => 'required',
         ], [
             'stok_awal' => [
                 'required' => 'Stok awal tidak boleh kosong',
@@ -399,8 +403,14 @@ class Administrator extends BaseController
                 'required' => 'Harga jual tidak boleh kosong',
                 'numeric' => 'Harga jual harus berupa angka',
             ],
-            'tanggal_stoak' => [
+            'tanggal_stok' => [
                 'required' => 'Tanggal stok tidak boleh kosong',
+            ],
+            'tgl_produksi' => [
+                'required' => 'Tanggal produksi tidak boleh kosong',
+            ],
+            'tgl_exp' => [
+                'required' => 'Tanggal exp tidak boleh kosong',
             ],
         ]);
         if (!$validation->withRequest($this->request)->run()) {
@@ -421,7 +431,9 @@ class Administrator extends BaseController
                 ];
             } else {
                 $stok_lama = $stok->where('id_stok', $id_stok)->first();
-                $update_produk = $produk->update($id_produk, ['stok' => ($check_produk->$stok - $stok_lama->stok_awal) + $stok_awal]);
+                $count = ((int)$check_produk->stok - (int)$stok_lama->stok_awal) + $stok_awal;
+                $update_stok = ['stok' => $count];
+                $update_produk = $produk->update($id_produk, $update_stok);
                 $data['stok_akhir'] = $stok_lama->stok_akhir;
                 $store = $stok->update($id_produk, $data);
                 $response = [
@@ -454,10 +466,10 @@ class Administrator extends BaseController
         }
         return $this->respond($response, 200);
     }
-    public function produk_stok_edit()
+    public function produk_stok_edit($id_stok)
     {
         $stok = new Stok();
-        $id_stok = $this->request->getPost('id_stok');
+        // $id_stok = $this->request->getPost('id_stok');
         $check_stok = $stok->where('id_stok', $id_stok)->first();
         $response = [
             'status' => 'success',

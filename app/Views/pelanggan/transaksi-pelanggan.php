@@ -14,10 +14,11 @@
                                 <strong>Info</strong>
                                 <ul>
                                     <li>Pesanan akan diproses setelah anda melakukan pembayaran.</li>
+                                    <li>Pembayaran di lakukan ke Qris <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#qris" type="button">KLIK UNTUK QRIS</button></li>
                                     <li>Jika anda tidak melakukan pembayaran dalam 24 jam, pesanan akan dibatalkan.</li>
                                     <li>Jika anda sudah melakukan pembayaran, mohon tunggu konfirmasi dari kami.</li>
                                     <li>Silahkan upload bukti bayar di menu di bawah untuk dilakukan konfirmasi oleh admin</li>
-                                    <li>Jika buktu bayar di tolak admin, silahkan klik status tolak untuk melihat alasan penolakan, kemudian silahkan upload bukti bayar </li>
+                                    <li>Jika bukti bayar di tolak admin, silahkan klik status tolak untuk melihat alasan penolakan, kemudian silahkan upload bukti bayar </li>
                                 </ul>
                             </div>
                             <div class="alert alert-success show-alert-success" role="alert" hidden>
@@ -146,6 +147,30 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+    Launch
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="qris" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Scan QRIS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="<?= base_url('logo/qris.jpg') ?>" width="100%" alt="" srcset="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

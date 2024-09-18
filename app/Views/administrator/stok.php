@@ -30,12 +30,14 @@
                                     <tr>
                                         <th data-field="state" data-checkbox="true"></th>
                                         <th data-field="id">No.</th>
-                                        <th data-field="name" data-editable="true">Total Masuk</th>
-                                        <th data-field="email" data-editable="true">Total Keluar</th>
-                                        <th data-field="phone" data-editable="true">Harga Modal</th>
+                                        <th data-field="name">Total Masuk</th>
+                                        <th data-field="email">Total Keluar</th>
+                                        <th data-field="phone">Harga Modal</th>
                                         <th data-field="complete">Harga Jual</th>
-                                        <th data-field="task" data-editable="true">Keuntungan</th>
+                                        <th data-field="task">Keuntungan</th>
                                         <th data-field="date">Tanggal Masuk</th>
+                                        <th data-field="a">Tanggal Produksi</th>
+                                        <th data-field="b">Tanggal Kadaluarsa</th>
                                         <th data-field="action">Action</th>
                                     </tr>
                                 </thead>
@@ -49,7 +51,9 @@
                                             <td>Rp. <?= $value->harga_modal ?></td>
                                             <td>Rp. <?= $value->harga_jual ?></td>
                                             <td>Rp. <?= $value->keuntungan ?></td>
-                                            <td><?= $value->created_at ?></td>
+                                            <td><?= date('d F Y', strtotime($value->created_at)) ?></td>
+                                            <td><?= date('d F Y', strtotime($value->tgl_produksi)) ?></td>
+                                            <td><?= date('d F Y', strtotime($value->tgl_exp)) ?></td>
                                             <td>
                                                 <button class="btn btn-edit btn-xs" onclick="edit('<?= $value->id_stok ?>')"><i class="fa fa-edit"></i></button>
                                                 <button class="btn btn-danger btn-xs" onclick="deleteConfirm('<?= $value->id_stok ?>')"><i class="fa fa-trash"></i></button>
@@ -126,7 +130,40 @@
 
                                                     <div class="input-group date">
                                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                        <input type="date" name="tanggal_stok" class="form-control" value="08/09/2017">
+                                                        <input type="date" name="tanggal_stok" class="form-control" value="">
+                                                        <span class="text-error e_tanggal_stok"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                <label class="login2">Tanggal Produksi</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                <div class="form-group data-custon-pick" id="data_3">
+                                                    <div class="input-group date">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                        <input type="date" name="tgl_produksi" class="form-control" onchange="make_exp()" value="">
+                                                        <span class="text-error e_tgl_produksi"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                <label class="login2">Tanggal Kaluarsa</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                <div class="form-group data-custon-pick" id="data_4">
+                                                    <div class="input-group date">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                        <input type="date" name="tgl_exp" readonly class="form-control" value="">
+                                                        <span class="text-error e_tgl_exp"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -167,9 +204,10 @@
         $("#modal-stok").modal('show');
     }
     edit = (id) => {
+        sessionStorage.setItem('id_stok', id);
         $.ajax({
             type: "GET",
-            url: url + "administrator/produk/edit/" + id,
+            url: url + "administrator/produk/stok/edit/" + id,
             dataType: "JSON",
             success: function(response) {
                 if (response.status == 'success') {
@@ -177,6 +215,8 @@
                     $("[name='harga_modal']").val(response.data.harga_modal);
                     $("[name='harga_jual']").val(response.data.harga_jual);
                     $("[name='tanggal_stok']").val(response.data.created_at);
+                    $("[name='tgl_produksi']").val(response.data.tgl_produksi);
+                    $("[name='tgl_exp']").val(response.data.tgl_exp);
                     $("#type").val('edit');
                     $("#modal-stok").modal('show');
                 } else {
@@ -201,6 +241,9 @@
         $("#form-stok").ajaxForm({
             type: "POST",
             url: url + "administrator/produk/stok/" + id_produk,
+            data: {
+                id_stok: sessionStorage.getItem('id_stok')
+            },
             dataType: "JSON",
             success: function(response) {
                 if (response.status == 'success') {
@@ -278,6 +321,12 @@
                 });
             }
         })
+    }
+    make_exp = () => {
+        let tgl_produksi = $("[name='tgl_produksi']").val();
+        let tgl_exp = new Date(tgl_produksi);
+        tgl_exp.setFullYear(tgl_exp.getFullYear() + 1);
+        $("[name='tgl_exp']").val(tgl_exp.toISOString().split('T')[0]);
     }
 </script>
 <?= $this->endSection() ?>

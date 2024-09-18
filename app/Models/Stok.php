@@ -12,7 +12,7 @@ class Stok extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_produk', 'stok_awal', 'stok_akhir', 'harga_modal', 'harga_jual', 'keuntungan', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['id_produk', 'stok_awal', 'stok_akhir', 'harga_modal', 'harga_jual', 'keuntungan', 'tgl_produksi', 'tgl_exp', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
