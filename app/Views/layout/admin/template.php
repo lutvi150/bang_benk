@@ -1,11 +1,11 @@
-<?=$this->include('layout/admin/head')?>
+<?= $this->include('layout/admin/head') ?>
 
 <body>
     <!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
     <!-- Start Header menu area -->
-    <?=$this->include('layout/admin/header_menu')?>
+    <?= $this->include('layout/admin/header_menu') ?>
     <!-- End Header menu area -->
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="index.html"><img class="main-logo" src="<?=base_url()?>assets/theme/kiaalap-master/img/logo/logo.png" alt="" /></a>
+                        <a href="index.html"><img class="main-logo" src="<?= base_url() ?>assets/theme/kiaalap-master/img/logo/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="">
+                                                                        <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -62,7 +62,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/4.jpg" alt="">
+                                                                        <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/4.jpg" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -74,7 +74,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/3.jpg" alt="">
+                                                                        <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/3.jpg" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -86,7 +86,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="">
+                                                                        <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -163,7 +163,7 @@
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                        <img src="<?=base_url()?>logo/logo_admin.png" alt="" />
+                                                        <img src="<?= base_url() ?>logo/logo_admin.png" alt="" />
                                                         <span class="admin-name">Admin</span>
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                     </a>
@@ -176,7 +176,7 @@
                                                         </li>
                                                         <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
                                                         </li>
-                                                        <li><a href="<?= base_url('/logout') ?>"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        <li><a href="<?= base_url('index.php/logout') ?>"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -205,7 +205,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/4.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/4.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -218,7 +218,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -231,7 +231,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -244,7 +244,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/3.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/3.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -257,7 +257,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/4.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/4.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -270,7 +270,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -283,7 +283,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -296,7 +296,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/1.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -309,7 +309,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/2.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -322,7 +322,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src="<?=base_url()?>assets/theme/kiaalap-master/img/contact/3.jpg" alt="" />
+                                                                                            <img src="<?= base_url() ?>assets/theme/kiaalap-master/img/contact/3.jpg" alt="" />
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -628,7 +628,7 @@
             </div>
 
             <!-- Mobile Menu start -->
-            <?=$this->include('layout/admin/mobile_menu')?>
+            <?= $this->include('layout/admin/mobile_menu') ?>
             <!-- Mobile Menu end -->
             <div class="breadcome-area">
                 <div class="container-fluid">
@@ -648,7 +648,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod"><?=$breadcrumb?></span>
+                                            <li><span class="bread-blod"><?= $breadcrumb ?></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -660,13 +660,13 @@
             </div>
         </div>
         <!-- content -->
-        <?=$this->renderSection('content')?>
+        <?= $this->renderSection('content') ?>
         <!-- end content -->
-        <?=$this->include('layout/admin/copyright')?>
+        <?= $this->include('layout/admin/copyright') ?>
     </div>
 
     <?= $this->include('layout/admin/footer') ?>
 </body>
-<?=$this->renderSection('script')?>
+<?= $this->renderSection('script') ?>
 
 </html>

@@ -54,6 +54,8 @@
                                                     <label for="" class="label label-danger">Tolak</label>
                                                 <?php elseif ($value->status_transaksi == 'finish'): ?>
                                                     <label for="" class="label label-success">Selesai</label>
+                                                    <?php elseif($value->status_transaksi=='menunggu_pembayaran'):?>
+                                                        <label for="" class="label label-danger">Menunggu Pembayaran</label>
                                                 <?php endif; ?>
                                             </td>
                                             <td>

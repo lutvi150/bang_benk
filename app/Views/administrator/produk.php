@@ -50,13 +50,13 @@
                                             <td><?=$value->nama_produk?></td>
                                             <td>Rp. <?=number_format($value->harga_jual)?></td>
                                             <td>
-                                                <a href="<?=base_url('administrator/produk/stok/' . $value->id_produk)?>" class="btn btn-success btn-xs"><?=$value->stok?></a>
+                                                <a href="<?=base_url('index.php/administrator/produk/stok/' . $value->id_produk)?>" class="btn btn-success btn-xs"><?=$value->stok?></a>
                                             </td>
                                             <td><?=$value->terjual?> Pcs</td>
                                             <td>0%</td>
                                             <td>Rp.<?=number_format($value->transaksi)?></td>
                                             <td>
-                                                <a href="<?=base_url('administrator/produk/edit/' . $value->id_produk)?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
+                                                <a href="<?=base_url('index.php/administrator/produk/edit/' . $value->id_produk)?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
                                                 <button class="btn btn-danger btn-xs" onclick="deleteConfirm('<?=$value->id_produk?>')"><i class="fa fa-trash"></i></button>
 
                                             </td>
