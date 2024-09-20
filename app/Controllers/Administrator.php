@@ -147,7 +147,7 @@ class Administrator extends BaseController
         $transaksi = new Transaksi();
         $data['head'] = 'Transaksi';
         $data['breadcrumb'] = 'Data Transaksi';
-        $data['transaksi'] = $transaksi->join('table_user', 'table_transaksi.id_user = table_user.id')->select('table_transaksi.*, table_user.nama_user,table_user.email')->orderBy('id_transaksi', 'DESC')->findAll();
+        $data['transaksi'] = $transaksi->join('table_user', 'table_transaksi.id_user = table_user.id')->select('table_transaksi.*, table_user.nama_user,table_user.email')->orderBy('id_transaksi', 'ASC')->findAll();
         // return $this->respond($data, 200);
         return view('administrator/transaksi', $data);
     }
