@@ -32,6 +32,21 @@ class Home extends BaseController
         $data['produk'] = $result;
         return view('pelanggan/front-pelanggan', $data);
     }
+    public function detail_produk($id_produk)
+    {
+        $produk = new Produk();
+        $foto = new FotoProduk();
+        $stok = new Stok();
+        $produk = $produk->where('id_produk', $id_produk)->first();
+        $produk->{'foto_produk'} = $foto->where('id_produk', $id_produk)->findAll();
+        $produk->{'stok_detail'} = $stok->where('id_produk', $id_produk)->orderBy('created_at', 'ASC')->first();
+        // $produk->{'count_stok'} = $stok->where('id_produk', $id_produk)->selectSum('stok');
+        $response = [
+            'status' => 'success',
+            'data' => $produk,
+        ];
+        return $this->respond($response, 200);
+    }
     public function login()
     {
         $data['head'] = 'Login';
@@ -46,7 +61,7 @@ class Home extends BaseController
             return view('login', $data);
         }
     }
-    function store_register()
+    public function store_register()
     {
         $validation = \Config\Services::validation();
         $validation->setRules([
@@ -108,7 +123,7 @@ class Home extends BaseController
         }
         return $this->respond($response, 200);
     }
-    function logout()
+    public function logout()
     {
         $session = \Config\Services::session();
         $session->destroy();

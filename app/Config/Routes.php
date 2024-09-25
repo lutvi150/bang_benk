@@ -11,6 +11,7 @@ $routes->set404Override(function () {
 $routes->get('/', 'Home::front_page');
 $routes->get('/register', 'Home::register');
 $routes->post('/register', 'Home::store_register');
+$routes->get('/detail-produks/(:num)', 'Home::detail_produk/$1');
 $routes->get('/logout', 'Home::logout');
 // use for login
 $routes->get('/shop-login', 'Home::login');

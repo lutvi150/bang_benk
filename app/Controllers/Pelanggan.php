@@ -11,7 +11,6 @@ use App\Models\Stok;
 use App\Models\Transaksi;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Files\File;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class Pelanggan extends BaseController
 {
@@ -20,7 +19,7 @@ class Pelanggan extends BaseController
     {
         //
     }
-    function checkout()
+    public function checkout()
     {
         $session = \Config\Services::session();
         $transaksi = new Transaksi();
@@ -48,7 +47,7 @@ class Pelanggan extends BaseController
             $produk->update($d->id_produk, ['stok' => $check_produk->stok]);
             $update_stok = [
                 'stok_akhir' => $get_stok->stok_akhir + $d->qty,
-                'keuntungan' => $get_stok->keuntungan + (($get_stok->harga_jual - $get_stok->harga_modal) * $d->qty)
+                'keuntungan' => $get_stok->keuntungan + (($get_stok->harga_jual - $get_stok->harga_modal) * $d->qty),
             ];
             $stok->update($d->id_stok, $update_stok);
         }
@@ -61,7 +60,7 @@ class Pelanggan extends BaseController
         ];
         return $this->respond($response, 200);
     }
-    function keranjang_store()
+    public function keranjang_store()
     {
         $session = \Config\Services::session();
         $stok = new Stok();
@@ -93,12 +92,12 @@ class Pelanggan extends BaseController
             $keranjang->insert($insert);
             $response = [
                 'status' => 'success',
-                'message' => 'Produk berhasil ditambahkan ke keranjang'
+                'message' => 'Produk berhasil ditambahkan ke keranjang',
             ];
         }
         return $this->respond($response, 200);
     }
-    function keranjang()
+    public function keranjang()
     {
         $session = \Config\Services::session();
         $keranjang = new Keranjang();
@@ -121,11 +120,31 @@ class Pelanggan extends BaseController
         ];
         return $this->respond($response, 200);
     }
-    function keranjang_view()
+    public function keranjang_view()
     {
-        return view('pelanggan/cart-pelanggan');
+        $session = \Config\Services::session();
+        $keranjang = new Keranjang();
+        $id_user = $session->get('id');
+        // $data = $keranjang->where('id_user', $id_user)->findAll();
+        $foto_produk = new FotoProduk();
+        $data = $keranjang->join('table_stok', 'table_keranjang.id_stok = table_stok.id_stok')->join('table_produk', 'table_keranjang.id_produk = table_produk.id_produk')->where('table_keranjang.id_user', $id_user)->where('table_keranjang.id_transaksi', 0)->select('table_keranjang.*, table_stok.harga_jual, table_produk.nama_produk,table_produk.detail_produk')->findAll();
+        $total_harga = $keranjang->where('id_user', $id_user)->where('id_transaksi', 0)->selectSum('total_harga')->first();
+        $result = null;
+        foreach ($data as $key => $value) {
+            $result[] = $value;
+            $value->{'foto'} = $foto_produk->where('id_produk', $value->id_produk)->first();
+        }
+        $response = [
+            'status' => 'success',
+            'data' => $result,
+            'total_harga' => number_format($total_harga->total_harga),
+            'item_count' => count($data),
+
+        ];
+        // return $this->respond($response, 200);exit;
+        return view('pelanggan/cart-pelanggan', $response);
     }
-    function transaksi()
+    public function transaksi()
     {
         $session = \Config\Services::session();
         $transaksi = new Transaksi();
@@ -133,7 +152,7 @@ class Pelanggan extends BaseController
         $data['transaksi'] = $get_transaksi;
         return view('pelanggan/transaksi-pelanggan', $data);
     }
-    function bukti_pembayaran_upload()
+    public function bukti_pembayaran_upload()
     {
         $buktibayar = new BuktiBayar();
         $id_transaksi = $this->request->getPost('id_transaksi');
@@ -144,14 +163,14 @@ class Pelanggan extends BaseController
                 'rules' => [
                     'uploaded[bukti_bayar]',
                     'mime_in[bukti_bayar,image/jpg,image/jpeg,image/png]',
-                    'max_size[bukti_bayar,10240]'
+                    'max_size[bukti_bayar,10240]',
                 ],
                 'errors' => [
                     'uploaded' => 'Bukti Pembayaran harus diupload',
                     'mime_in' => 'Bukti Pembayaran harus berformat jpg, jpeg, atau png',
-                    'max_size' => 'Ukuran file maksimal 10MB'
-                ]
-            ]
+                    'max_size' => 'Ukuran file maksimal 10MB',
+                ],
+            ],
         ];
         if (!$this->validateData([], $validationRule)) {
             $response = [
@@ -189,7 +208,7 @@ class Pelanggan extends BaseController
         }
         return $this->respond($response, 200);
     }
-    function bukti_pembayaran_view($id_transaksi)
+    public function bukti_pembayaran_view($id_transaksi)
     {
         $buktibayar = new BuktiBayar();
         $check_bukti_bayar = $buktibayar->where('id_transaksi', $id_transaksi)->first();

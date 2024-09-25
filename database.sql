@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Host:                         103.15.226.176
+-- Host:                         teamclover.my.id
 -- Server version:               10.6.19-MariaDB-cll-lve-log - MariaDB Server
 -- Server OS:                    Linux
--- HeidiSQL Version:             12.8.0.6935
+-- HeidiSQL Version:             12.8.0.6908
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -15,7 +15,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- Dumping structure for table teamclov_demo_1.migrations
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `version` varchar(255) NOT NULL,
@@ -41,7 +40,6 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 	(10, '2021-11-14-143905', 'CodeIgniter\\Settings\\Database\\Migrations\\AddContextColumn', 'default', 'CodeIgniter\\Settings', 1726407593, 7);
 
 -- Dumping structure for table teamclov_demo_1.table_bukti_bayar
-DROP TABLE IF EXISTS `table_bukti_bayar`;
 CREATE TABLE IF NOT EXISTS `table_bukti_bayar` (
   `id_bukti_bayar` int(5) NOT NULL AUTO_INCREMENT,
   `id_transaksi` int(5) NOT NULL,
@@ -51,14 +49,14 @@ CREATE TABLE IF NOT EXISTS `table_bukti_bayar` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id_bukti_bayar`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table teamclov_demo_1.table_bukti_bayar: ~0 rows (approximately)
 INSERT INTO `table_bukti_bayar` (`id_bukti_bayar`, `id_transaksi`, `bukti_bayar`, `keterangan`, `type`, `created_at`, `updated_at`) VALUES
-	(1, 18, '18-20240915070341.1726401821_20dd850740afdd281875.jpg', 'bukti bayar tidak jelas', 'webp', '2024-09-15 13:50:50', '2024-09-15 19:03:41');
+	(1, 18, '18-20240915070341.1726401821_20dd850740afdd281875.jpg', 'bukti bayar tidak jelas', 'webp', '2024-09-15 13:50:50', '2024-09-15 19:03:41'),
+	(2, 31, '31-20240924092637.1727187997_2878554c783c7d365a97.jpg', '', 'jpg', '2024-09-24 21:26:30', '2024-09-24 21:26:37');
 
 -- Dumping structure for table teamclov_demo_1.table_foto_produk
-DROP TABLE IF EXISTS `table_foto_produk`;
 CREATE TABLE IF NOT EXISTS `table_foto_produk` (
   `id_foto_produk` int(5) NOT NULL AUTO_INCREMENT,
   `id_produk` int(5) NOT NULL,
@@ -92,7 +90,6 @@ INSERT INTO `table_foto_produk` (`id_foto_produk`, `id_produk`, `foto_produk`, `
 	(48, 19, '19_240905023204_1725521524_44a13a904de1a660e8ec.png', '', '0000-00-00 00:00:00', NULL, NULL);
 
 -- Dumping structure for table teamclov_demo_1.table_keranjang
-DROP TABLE IF EXISTS `table_keranjang`;
 CREATE TABLE IF NOT EXISTS `table_keranjang` (
   `id_keranjang` int(5) NOT NULL AUTO_INCREMENT,
   `id_produk` int(11) NOT NULL,
@@ -105,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `table_keranjang` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id_keranjang`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table teamclov_demo_1.table_keranjang: ~68 rows (approximately)
 INSERT INTO `table_keranjang` (`id_keranjang`, `id_produk`, `id_stok`, `id_user`, `id_transaksi`, `qty`, `harga`, `total_harga`, `created_at`, `updated_at`) VALUES
@@ -177,10 +174,18 @@ INSERT INTO `table_keranjang` (`id_keranjang`, `id_produk`, `id_stok`, `id_user`
 	(78, 16, 22, 18, 30, 2, 150000, 300000, '2024-09-24 07:46:26', '2024-09-24 07:47:34'),
 	(79, 11, 20, 18, 30, 2, 155000, 310000, '2024-09-24 07:46:52', '2024-09-24 07:47:34'),
 	(80, 10, 19, 18, 30, 2, 150000, 300000, '2024-09-24 07:47:17', '2024-09-24 07:47:34'),
-	(81, 9, 9, 18, 30, 2, 140000, 280000, '2024-09-24 07:47:25', '2024-09-24 07:47:34');
+	(81, 9, 9, 18, 30, 2, 140000, 280000, '2024-09-24 07:47:25', '2024-09-24 07:47:34'),
+	(82, 19, 24, 19, 31, 1, 175000, 175000, '2024-09-24 21:24:53', '2024-09-24 21:25:13'),
+	(83, 18, 16, 19, 0, 1, 145000, 145000, '2024-09-24 21:28:35', '2024-09-24 21:28:35'),
+	(84, 17, 15, 19, 0, 1, 150000, 150000, '2024-09-24 21:28:41', '2024-09-24 21:28:41'),
+	(85, 15, 23, 19, 0, 1, 175000, 175000, '2024-09-24 21:28:44', '2024-09-24 21:28:44'),
+	(86, 18, 16, 1, 0, 1, 145000, 145000, '2024-09-24 21:33:48', '2024-09-24 21:33:48'),
+	(87, 16, 22, 20, 0, 1, 150000, 150000, '2024-09-24 22:16:49', '2024-09-24 22:16:49'),
+	(88, 13, 11, 20, 0, 1, 140000, 140000, '2024-09-24 22:16:55', '2024-09-24 22:16:55'),
+	(89, 10, 19, 20, 0, 1, 150000, 150000, '2024-09-24 22:16:59', '2024-09-24 22:16:59'),
+	(90, 14, 12, 20, 0, 1, 150000, 150000, '2024-09-24 22:17:03', '2024-09-24 22:17:03');
 
 -- Dumping structure for table teamclov_demo_1.table_produk
-DROP TABLE IF EXISTS `table_produk`;
 CREATE TABLE IF NOT EXISTS `table_produk` (
   `id_produk` int(5) NOT NULL AUTO_INCREMENT,
   `nama_produk` varchar(255) NOT NULL,
@@ -197,8 +202,8 @@ CREATE TABLE IF NOT EXISTS `table_produk` (
 
 -- Dumping data for table teamclov_demo_1.table_produk: ~16 rows (approximately)
 INSERT INTO `table_produk` (`id_produk`, `nama_produk`, `detail_produk`, `satuan_produk`, `nomor_registrasi_produk`, `stok`, `stiker`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(2, 'Samsu Refil', 'Samsu Refilg', '', '240905100311', 68, 'sale', '2024-09-03 15:51:16', '2024-09-24 20:25:48', NULL),
-	(3, 'Malboro BF  ', 'Jayana', '', '240905100520', 365, 'new', '2024-09-03 15:54:27', '2024-09-24 13:34:19', NULL),
+	(2, 'Samsu Refil', 'Samsu Refilg', '', '240905100311', 68, 'sale', '2024-09-03 15:51:16', '2024-09-24 21:01:01', NULL),
+	(3, 'Malboro BF  ', 'Jayana', '', '240905100520', 365, 'new', '2024-09-03 15:54:27', '2024-09-24 21:01:33', NULL),
 	(4, 'Dunhill', 'Queen Bee', '', '240905100716', 476, '0', '2024-09-03 15:58:26', '2024-09-24 01:05:47', NULL),
 	(8, 'Sempurna Mild ', 'Sempurna mild', '', '240905101044', 599, '0', '2024-09-03 16:11:12', '2024-09-24 01:09:56', NULL),
 	(9, 'Melon Ice', 'Melon Ice', '', '240905101248', 97, '0', '2024-09-04 22:32:21', '2024-09-24 07:47:34', NULL),
@@ -211,11 +216,10 @@ INSERT INTO `table_produk` (`id_produk`, `nama_produk`, `detail_produk`, `satuan
 	(16, 'Gudang Garam Merah', 'Queen Bee', '', '240905102658', 226, '0', '2024-09-05 00:57:13', '2024-09-24 07:47:34', NULL),
 	(17, 'Class Mild', 'Indobacco', '', '240905102531', 222, '0', '2024-09-05 01:01:40', '2024-09-24 07:47:34', NULL),
 	(18, 'Darmawangi', 'Bacco Bintang', '', '240905100810', 142, '0', '2024-09-05 01:02:46', '2024-09-24 01:19:22', NULL),
-	(19, 'Apple Ice', 'Jayana', '', '240905023216', 275, '0', '2024-09-05 01:03:23', '2024-09-24 07:47:34', NULL),
+	(19, 'Apple Ice', 'Jayana', '', '240905023216', 274, '0', '2024-09-05 01:03:23', '2024-09-24 21:25:13', NULL),
 	(21, '-', '', '', '', 0, '0', '2024-09-07 08:38:59', '2024-09-07 08:38:59', NULL);
 
 -- Dumping structure for table teamclov_demo_1.table_stok
-DROP TABLE IF EXISTS `table_stok`;
 CREATE TABLE IF NOT EXISTS `table_stok` (
   `id_stok` int(5) NOT NULL AUTO_INCREMENT,
   `id_produk` int(11) NOT NULL,
@@ -233,9 +237,9 @@ CREATE TABLE IF NOT EXISTS `table_stok` (
 
 -- Dumping data for table teamclov_demo_1.table_stok: ~21 rows (approximately)
 INSERT INTO `table_stok` (`id_stok`, `id_produk`, `stok_awal`, `stok_akhir`, `harga_modal`, `harga_jual`, `keuntungan`, `tgl_produksi`, `tgl_exp`, `created_at`, `updated_at`) VALUES
-	(1, 2, 100, 32, 130000, 150000, 640000, NULL, NULL, '2024-09-04 00:00:00', '2024-09-20 14:31:35'),
+	(1, 2, 100, 32, 130000, 150000, 640000, '2024-06-07 00:00:00', '2025-06-07 00:00:00', '2024-09-04 00:00:00', '2024-09-24 21:01:01'),
 	(4, 4, 500, 26, 140000, 150000, 260000, '2024-05-05 00:00:00', '2025-05-05 00:00:00', '2024-09-04 00:00:00', '2024-09-24 01:05:47'),
-	(5, 3, 300, 27, 130000, 150000, 540000, NULL, NULL, '2024-09-01 00:00:00', '2024-09-20 14:31:35'),
+	(5, 3, 300, 27, 130000, 150000, 540000, '2024-06-07 00:00:00', '2025-06-07 00:00:00', '2024-09-01 00:00:00', '2024-09-24 21:01:33'),
 	(7, 8, 600, 1, 155000, 165000, 10000, NULL, NULL, '2024-09-04 00:00:00', '2024-09-16 08:59:33'),
 	(8, 8, 600, 1, 155000, 165000, 20000, '2024-06-04 00:00:00', '2025-06-04 00:00:00', '2024-09-04 00:00:00', '2024-09-24 01:09:56'),
 	(9, 9, 100, 3, 120000, 140000, 50000, '2024-06-07 00:00:00', '2025-06-07 00:00:00', '2024-09-04 00:00:00', '2024-09-24 07:47:34'),
@@ -253,10 +257,9 @@ INSERT INTO `table_stok` (`id_stok`, `id_produk`, `stok_awal`, `stok_akhir`, `ha
 	(21, 12, 50, 0, 120000, 150000, NULL, '2024-04-05 00:00:00', '2025-04-05 00:00:00', '2024-09-04 00:00:00', '2024-09-24 07:29:10'),
 	(22, 16, 50, 2, 130000, 150000, 40000, '2024-07-12 00:00:00', '2025-07-12 00:00:00', '2024-09-01 00:00:00', '2024-09-24 07:47:34'),
 	(23, 15, 50, 1, 145000, 175000, 30000, '2024-05-05 00:00:00', '2025-05-05 00:00:00', '2024-08-01 00:00:00', '2024-09-24 07:47:34'),
-	(24, 19, 50, 2, 145000, 175000, 60000, '2024-09-01 00:00:00', '2025-09-01 00:00:00', '2024-08-08 00:00:00', '2024-09-24 07:47:34');
+	(24, 19, 50, 3, 145000, 175000, 90000, '2024-09-01 00:00:00', '2025-09-01 00:00:00', '2024-08-08 00:00:00', '2024-09-24 21:25:13');
 
 -- Dumping structure for table teamclov_demo_1.table_transaksi
-DROP TABLE IF EXISTS `table_transaksi`;
 CREATE TABLE IF NOT EXISTS `table_transaksi` (
   `id_transaksi` int(5) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
@@ -266,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `table_transaksi` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id_transaksi`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table teamclov_demo_1.table_transaksi: ~19 rows (approximately)
 INSERT INTO `table_transaksi` (`id_transaksi`, `id_user`, `total_harga`, `status_transaksi`, `nomor_transaksi`, `created_at`, `updated_at`) VALUES
@@ -299,10 +302,10 @@ INSERT INTO `table_transaksi` (`id_transaksi`, `id_user`, `total_harga`, `status
 	(27, 6, 3830000, 'menunggu_pembayaran', '240920023135', '2024-09-20 14:31:35', NULL),
 	(28, 17, 610000, 'menunggu_pembayaran', '240924121237', '2024-09-24 00:12:37', NULL),
 	(29, 18, 440000, 'menunggu_pembayaran', '240924072238', '2024-09-24 07:22:38', NULL),
-	(30, 18, 2605000, 'menunggu_pembayaran', '240924074734', '2024-09-24 07:47:34', NULL);
+	(30, 18, 2605000, 'menunggu_pembayaran', '240924074734', '2024-09-24 07:47:34', NULL),
+	(31, 19, 175000, 'verifikasi_pembayaran', '240924092513', '2024-09-24 21:25:13', NULL);
 
 -- Dumping structure for table teamclov_demo_1.table_user
-DROP TABLE IF EXISTS `table_user`;
 CREATE TABLE IF NOT EXISTS `table_user` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `nama_user` varchar(255) NOT NULL,
@@ -315,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `table_user` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table teamclov_demo_1.table_user: ~14 rows (approximately)
 INSERT INTO `table_user` (`id`, `nama_user`, `email`, `password`, `profil_status`, `role`, `last_login`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -336,7 +339,9 @@ INSERT INTO `table_user` (`id`, `nama_user`, `email`, `password`, `profil_status
 	(15, 'karmila', 'karmila@gmail.com', 'd531744bba0ad6b2d8154aab44b41fc002e1065a3f2314df9cff4503b15de9df', 'nonak', 'pelanggan', '2024-09-16 23:57:27', '2024-09-16 23:57:27', '2024-09-16 23:57:27', NULL),
 	(16, 'Miranti', 'miranti@gmail.com', '43ead333cfe2fbf867eaa2f1b1700253126355b33e2d20780f507ceb49d695f8', 'nonak', 'pelanggan', '2024-09-17 11:50:32', '2024-09-17 11:50:32', '2024-09-17 11:50:32', NULL),
 	(17, 'erli', 'erli@gmail.com', '8bb0cf6eb9b17d0f7d22b456f121257dc1254e1f01665370476383ea776df414', 'nonak', 'pelanggan', '2024-09-24 00:11:46', '2024-09-24 00:11:46', '2024-09-24 00:11:46', NULL),
-	(18, 'heri', 'heri@gmail.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'nonak', 'pelanggan', '2024-09-24 07:20:06', '2024-09-24 07:20:06', '2024-09-24 07:20:06', NULL);
+	(18, 'heri', 'heri@gmail.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'nonak', 'pelanggan', '2024-09-24 07:20:06', '2024-09-24 07:20:06', '2024-09-24 07:20:06', NULL),
+	(19, 'Nick', 'lintangtobacco@gmail.com', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'nonak', 'pelanggan', '2024-09-24 21:22:28', '2024-09-24 21:22:28', '2024-09-24 21:22:28', NULL),
+	(20, 'july', 'july@gmail.com', '0b891e8725478587acfd6bbc6913d6efb73d0a4111c99caafb57b0563c840ad5', 'nonak', 'pelanggan', '2024-09-24 22:16:11', '2024-09-24 22:16:11', '2024-09-24 22:16:11', NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

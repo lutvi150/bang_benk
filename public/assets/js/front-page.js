@@ -92,5 +92,44 @@ function check_out() {
     });
 }
 show_product = (id_produk) => {
-
+    $.ajax({
+    type: "GET",
+    url: url+"detail-produks/"+id_produk,
+    dataType: "JSON",
+    success: function (response) {
+       if (response.status=='success') {
+        let foto_produk="";
+        let show_foto="";
+        if (response.data.foto_produk.length > 0) {
+            foto_produk=`${base_url}uploads/produk/${response.data.foto_produk[0].foto_produk}`;
+          
+            $.each(response.data.foto_produk, function (indexInArray, valueOfElement) { 
+                                 show_foto+=`<a href="javascript:;" class="active"><img alt="${response.data.nama_produk}" src="${base_url}uploads/produk/${valueOfElement.foto_produk}"></a>`;
+            });
+        }else{
+            $foto_produk=`${base_url}uploads/notfoud.jpg`;
+            for (let index = 0; index < 2; index++) {
+                show_foto+=`<a href="javascript:;" class="active"><img alt="${response.data.nama_produk}" src="${foto_produk}"></a>`;
+            }
+        }
+        let price=change_format(response.data.stok_detail.harga_jual);
+        $(".fast-nama-produk").text(response.data.nama_produk);
+        $(".price-label").html(`<span>Rp</span> ${price}`);
+        $(".fast-stok").text(`${response.data.stok} ${response.data.satuan_produk}`);
+        $(".fast-foto-produk").html(`<img src="${foto_produk}" alt="Cool green dress with red bell" class="img-responsive">`);
+        $(".fast-show-produk-image").html(show_foto);
+       } 
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Something went wrong! ${xhr.status} ${xhr.responseText} ${thrownError}`,
+        });
+    }
+});
+}
+change_format=(amount)=>{
+    const formattedAmount = amount.toLocaleString('de-DE');
+    return formattedAmount;
 }

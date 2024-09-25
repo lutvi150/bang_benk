@@ -1,5 +1,5 @@
-<?= $this->extend('front-page') ?>
-<?= $this->section('content') ?>
+<?=$this->extend('front-page')?>
+<?=$this->section('content')?>
 <div class="main">
     <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -12,83 +12,53 @@
                         <div class="table-wrapper-responsive">
                             <table summary="Shopping cart">
                                 <tr>
-                                    <th class="goods-page-image">Image</th>
-                                    <th class="goods-page-description">Detail</th>
-                                    <th class="goods-page-ref-no">Ref No</th>
+                                    <th class="goods-page-image">Foto Produk</th>
+                                    <th class="goods-page-description">Nama & Detail</th>
                                     <th class="goods-page-quantity">Jumlah</th>
                                     <th class="goods-page-price">Harga Satuan</th>
                                     <th class="goods-page-total" colspan="2">Total</th>
                                 </tr>
+                                <?php foreach ($data as $key => $value): ?>
+                                    <?php if (empty($value->foto)) {
+    $foto = "uploads/notfoud.jpg";
+} else {
+    $foto = "uploads/produk/" . $value->foto->foto_produk;
+}
+?>
                                 <tr>
                                     <td class="goods-page-image">
-                                        <a href="javascript:;"><img src="assets/pages/img/products/model3.jpg" alt="Berry Lace Dress"></a>
+                                        <a href="javascript:;"><img src="<?=base_url($foto)?>" alt="<?=$value->nama_produk?>"></a>
                                     </td>
                                     <td class="goods-page-description">
-                                        <h3><a href="javascript:;">Cool green dress with red bell</a></h3>
-                                        <p><strong>Item 1</strong> - Color: Green; Size: S</p>
-                                        <em>More info is here</em>
-                                    </td>
-                                    <td class="goods-page-ref-no">
-                                        javc2133
+                                        <h3><a href="javascript:;"><?=$value->nama_produk?></a></h3>
+                                        <p><?=$value->detail_produk?></p>
+                                        <!-- <em>More info is here</em> -->
                                     </td>
                                     <td class="goods-page-quantity">
                                         <div class="product-quantity">
-                                            <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
+                                            <input id="product-quantity" type="text" value="<?=$value->qty?>" readonly class="form-control input-sm">
                                         </div>
                                     </td>
                                     <td class="goods-page-price">
-                                        <strong><span>$</span>47.00</strong>
+                                        <strong><span>Rp </span><?=number_format($value->harga)?></strong>
                                     </td>
                                     <td class="goods-page-total">
-                                        <strong><span>$</span>47.00</strong>
+                                        <strong><span>Rp </span><?=number_format($value->total_harga)?></strong>
                                     </td>
                                     <td class="del-goods-col">
                                         <a class="del-goods" href="javascript:;">&nbsp;</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="goods-page-image">
-                                        <a href="javascript:;"><img src="assets/pages/img/products/model4.jpg" alt="Berry Lace Dress"></a>
-                                    </td>
-                                    <td class="goods-page-description">
-                                        <h3><a href="javascript:;">Cool green dress with red bell</a></h3>
-                                        <p><strong>Item 1</strong> - Color: Green; Size: S</p>
-                                        <em>More info is here</em>
-                                    </td>
-                                    <td class="goods-page-ref-no">
-                                        javc2133
-                                    </td>
-                                    <td class="goods-page-quantity">
-                                        <div class="product-quantity">
-                                            <input id="product-quantity2" type="text" value="1" readonly class="form-control input-sm">
-                                        </div>
-                                    </td>
-                                    <td class="goods-page-price">
-                                        <strong><span>$</span>47.00</strong>
-                                    </td>
-                                    <td class="goods-page-total">
-                                        <strong><span>$</span>47.00</strong>
-                                    </td>
-                                    <td class="del-goods-col">
-                                        <a class="del-goods" href="javascript:;">&nbsp;</a>
-                                    </td>
-                                </tr>
+                                <?php endforeach;?>
+
                             </table>
                         </div>
 
                         <div class="shopping-total">
                             <ul>
-                                <li>
-                                    <em>Sub total</em>
-                                    <strong class="price"><span>$</span>47.00</strong>
-                                </li>
-                                <li>
-                                    <em>Shipping cost</em>
-                                    <strong class="price"><span>$</span>3.00</strong>
-                                </li>
                                 <li class="shopping-total-price">
                                     <em>Total</em>
-                                    <strong class="price"><span>$</span>50.00</strong>
+                                    <strong class="price"><span>Rp </span> <?=$total_harga?></strong>
                                 </li>
                             </ul>
                         </div>
@@ -100,107 +70,11 @@
             <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
-
-        <!-- BEGIN SIMILAR PRODUCTS -->
-        <div class="row margin-bottom-40">
-            <div class="col-md-12 col-sm-12">
-                <h2>Most popular products</h2>
-                <div class="owl-carousel owl-carousel4">
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                            <div class="sticker sticker-new"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                            <div class="sticker sticker-sale"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END SIMILAR PRODUCTS -->
     </div>
 </div>
 
-<?= $this->endSection() ?>
-<?= $this->section('script') ?>
+<?=$this->endSection()?>
+<?=$this->section('script')?>
 <script>
     show_keranjang = () => {
         $.ajax({
@@ -221,4 +95,4 @@
         });
     }
 </script>
-<?= $this->endSection() ?>
+<?=$this->endSection()?>
