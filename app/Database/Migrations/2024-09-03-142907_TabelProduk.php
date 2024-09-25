@@ -38,6 +38,10 @@ class TabelProduk extends Migration
             'detail_produk' => [
                 'type' => 'text',
             ],
+            'satuan_produk' => [
+                'type' => 'varchar',
+                'constraint' => 50,
+            ],
             'created_at' => [
                 'type' => 'datetime',
             ],

@@ -269,7 +269,7 @@ class Administrator extends BaseController
         $data['breadcrumb'] = 'Tambah Produk';
         $check_produk = $produk->where('nama_produk', '-')->first();
         $data['type'] = 'add';
-        $data['produk'] = (object) ['nama_produk' => '', 'detail_produk' => ''];
+        $data['produk'] = (object) ['nama_produk' => '', 'detail_produk' => '', 'satuan_produk' => ''];
         if ($check_produk) {
             $data['id_produk'] = $check_produk->id_produk;
         } else {
@@ -286,6 +286,7 @@ class Administrator extends BaseController
         $update = [
             'nama_produk' => $this->request->getPost('nama_produk'),
             'detail_produk' => $this->request->getPost('detail_produk'),
+            'satuan_produk' => $this->request->getPost('satuan_produk'),
             'nomor_registrasi_produk' => date('ymdhis'),
         ];
         if ($type == 'add') {
@@ -293,6 +294,7 @@ class Administrator extends BaseController
             $validation->setRules([
                 'nama_produk' => 'required',
                 'detail_produk' => 'required',
+                'satuan_produk' => 'required',
             ], [
                 'nama_produk' => [
                     'required' => 'nama produk tidak boleh kosong',
@@ -300,6 +302,9 @@ class Administrator extends BaseController
                 'detail_produk' => [
                     'required' => 'detail produk tidak boleh kosong',
                 ],
+                'satuan_produk' => [
+                    'required' => 'satuan produk tidak boleh kosong'
+                ]
             ]);
             if (!$validation->withRequest($this->request)->run()) {
                 $response = [
@@ -435,7 +440,7 @@ class Administrator extends BaseController
                 $update_stok = ['stok' => $count];
                 $update_produk = $produk->update($id_produk, $update_stok);
                 $data['stok_akhir'] = $stok_lama->stok_akhir;
-                $store = $stok->update($id_produk, $data);
+                $store = $stok->update($id_stok, $data);
                 $response = [
                     'status' => 'success',
                     'message' => 'produk berhasil diupdate',

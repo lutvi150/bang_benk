@@ -211,12 +211,17 @@
             dataType: "JSON",
             success: function(response) {
                 if (response.status == 'success') {
+                    let data = '2024-12-1';
+                    let tgl_exp = new Date(data);
+                    let month = String(tgl_exp.getMonth() + 1).padStart(2, '0');
+                    console.log(month);
+
                     $("[name='stok_awal']").val(response.data.stok_awal);
                     $("[name='harga_modal']").val(response.data.harga_modal);
                     $("[name='harga_jual']").val(response.data.harga_jual);
-                    $("[name='tanggal_stok']").val(response.data.created_at);
-                    $("[name='tgl_produksi']").val(response.data.tgl_produksi);
-                    $("[name='tgl_exp']").val(response.data.tgl_exp);
+                    $("[name='tanggal_stok']").val(formatDate(response.data.created_at));
+                    $("[name='tgl_produksi']").val(formatDate(response.data.tgl_produksi));
+                    $("[name='tgl_exp']").val(formatDate(response.data.tgl_exp));
                     $("#type").val('edit');
                     $("#modal-stok").modal('show');
                 } else {
@@ -235,6 +240,15 @@
                 });
             }
         });
+    }
+
+    function formatDate(dateStr) {
+        let date = new Date(dateStr);
+        let day = String(date.getDate()).padStart(2, '0');
+        let month = String(date.getMonth() + 1).padStart(2, '0');
+        let year = date.getFullYear();
+        // return `${day}/${month}/${year}`;
+        return `${year}-${month}-${day}`;
     }
     store_stock = () => {
         $(".text-error").text('');
