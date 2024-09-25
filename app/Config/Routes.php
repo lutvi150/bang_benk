@@ -57,6 +57,8 @@ $routes->group('administrator', static function ($routes) {
     $routes->get('transaksi/manual', 'Administrator::transaksi_manual');
     // faktur
     $routes->get('faktur/(:num)', 'Report::faktur/$1');
+    // use for developer only
+    $routes->get('update-stok-admin', 'Developer::update_stok_admin');
 });
 $routes->group('pelanggan', static function ($routes) {
     $routes->get('dashboard', 'Pelanggan::dashboard');
