@@ -1,0 +1,30 @@
+[16-Sep-2024 06:56:51 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php:91
+Stack trace:
+#0 /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php(104): preload->load()
+#1 {main}
+  thrown in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php on line 91
+[16-Sep-2024 06:56:54 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php:91
+Stack trace:
+#0 /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php(104): preload->load()
+#1 {main}
+  thrown in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php on line 91
+[16-Sep-2024 07:07:35 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php:91
+Stack trace:
+#0 /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php(104): preload->load()
+#1 {main}
+  thrown in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php on line 91
+[16-Sep-2024 07:10:02 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php:91
+Stack trace:
+#0 /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php(104): preload->load()
+#1 {main}
+  thrown in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php on line 91
+[16-Sep-2024 07:10:07 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php:91
+Stack trace:
+#0 /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php(104): preload->load()
+#1 {main}
+  thrown in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php on line 91
+[16-Sep-2024 12:06:56 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php:91
+Stack trace:
+#0 /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php(104): preload->load()
+#1 {main}
+  thrown in /home/teamclov/public_html/bangbenk.teamclover.my.id/preload.php on line 91

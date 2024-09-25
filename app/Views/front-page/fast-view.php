@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-3">
         <div class="product-main-image fast-foto-produk">
-          <img src="<?=base_url()?>uploads/produk/samsu.jpg" alt="Cool green dress with red bell" class="img-responsive">
+          <!-- <img src="<?=base_url()?>uploads/produk/samsu.jpg" alt="Cool green dress with red bell" class="img-responsive"> -->
         </div>
         <div class="product-other-images fast-show-produk-image">
           <!-- <a href="javascript:;" class=""><img alt="Berry Lace Dress" src="<?=base_url()?>uploads/produk/samsu.jpg"></a>
