@@ -30,11 +30,11 @@
             <!-- BEGIN TOP BAR MENU -->
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="<?= base_url('index.php/shop-account') ?>">Akun Saya</a></li>
-                    <li><a href="<?= base_url('index.php/shop-wishlist') ?>">My Wishlist</a></li>
-                    <li><a href="<?= base_url('index.php/shop-checkout') ?>">Checkout</a></li>
                     <?php $session = \Config\Services::session(); ?>
                     <?php if ($session->get('login') == true): ?>
+                        <li><a href="<?= base_url('index.php/shop-account') ?>">Akun Saya</a></li>
+                        <li><a href="<?= base_url('index.php/shop-wishlist') ?>">My Wishlist</a></li>
+                        <li><a href="<?= base_url('index.php/shop-checkout') ?>">Checkout</a></li>
                         <li><a href="#">Hello <?= $session->get('nama_user') ?></a></li>
                         <li><a href="<?= base_url('index.php/pelanggan/transaksi') ?>">Transaksi</a></li>
                         <li><a href="<?= base_url('index.php/logout') ?>">Logout</a></li>

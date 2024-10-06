@@ -631,4 +631,16 @@ class Administrator extends BaseController
         ];
         return $this->respond($response, 200);
     }
+    // use for year report
+    function tahun_laporan()
+    {
+        $transaksi = new Transaksi();
+        $data = $transaksi->select('YEAR(created_at) as tahun')->groupBy('tahun')->orderBy('tahun', 'DESC')->findAll();
+        $response = [
+            'status' => 'success',
+            'data' => $data
+        ];
+        return $this->respond($response, 200);
+    }
+    // end year report
 }

@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Filters\Auth;
+use App\Filters\AuthAdmin;
+use App\Filters\AuthPelanggan;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -34,6 +37,9 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'auth' => Auth::class,
+        'administrator' => AuthAdmin::class,
+        'pelanggan' => AuthPelanggan::class,
     ];
 
     /**

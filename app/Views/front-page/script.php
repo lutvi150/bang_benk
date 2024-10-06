@@ -46,6 +46,7 @@
  <script type="text/javascript">
      let url = '<?= base_url('index.php/') ?>';
      let base_url = '<?= base_url() ?>'
+     let session = '<?= session('login') ?>'
      jQuery(document).ready(function() {
          Layout.init();
          Layout.initOWL();

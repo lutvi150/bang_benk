@@ -20,10 +20,11 @@
 
       <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
-      <!-- BEGIN CART -->
-      <?= $this->include('front-page/chart') ?>
-      <!--END CART -->
-
+      <?php if (session('login')): ?>
+        <!-- BEGIN CART -->
+        <?= $this->include('front-page/chart') ?>
+        <!--END CART -->
+      <?php endif;  ?>
       <!-- BEGIN NAVIGATION -->
       <?= $this->include('front-page/navigation') ?>
       <!-- END NAVIGATION -->

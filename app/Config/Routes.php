@@ -20,7 +20,7 @@ $routes->post('/api-login', 'Home::verification');
 $routes->group('admin', static function ($routes) {
     $routes->get('login', 'Home::login');
 });
-$routes->group('administrator', static function ($routes) {
+$routes->group('administrator', ['filter' => 'administrator'], static function ($routes) {
     $routes->get('transaksi', 'Administrator::transaksi');
     $routes->get('/', 'Administrator::index');
     // user
@@ -57,10 +57,13 @@ $routes->group('administrator', static function ($routes) {
     $routes->get('transaksi/manual', 'Administrator::transaksi_manual');
     // faktur
     $routes->get('faktur/(:num)', 'Report::faktur/$1');
+    // use for report
+    $routes->get('tahun-laporan', 'Administrator::tahun_laporan');
+    $routes->post('laporan-penjualan', 'Report::laporan_penjualan');
     // use for developer only
     $routes->get('update-stok-admin', 'Developer::update_stok_admin');
 });
-$routes->group('pelanggan', static function ($routes) {
+$routes->group('pelanggan', ['filter' => 'pelanggan'], static function ($routes) {
     $routes->get('dashboard', 'Pelanggan::dashboard');
     $routes->get('keranjang/(:num)', 'Pelanggan::produk');
     $routes->post('keranjang', 'Pelanggan::keranjang_store');

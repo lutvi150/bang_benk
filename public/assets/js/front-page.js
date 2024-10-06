@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    count_keranjang();
+    if (session==1) {
+        count_keranjang();
+    }
 });
 notif_login = () => {
     $(".alert-heading").text('Hallo');

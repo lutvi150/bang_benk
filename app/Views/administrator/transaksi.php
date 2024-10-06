@@ -16,6 +16,7 @@
                     <div class="sparkline13-graph">
                         <a href="<?= base_url('administrator/transaksi/manual') ?>">
                             <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Transaksi Manual</button></a>
+                        <button type="button" class="btn btn-primary" onclick="print_laporan()"><i class="fa fa-print"></i> Laporan Transaksi</button>
                         <div class="datatable-dashv1-list custom-datatable-overright">
                             <div id="toolbar">
                                 <select class="form-control dt-tb">
@@ -54,15 +55,15 @@
                                                     <label for="" class="label label-danger">Tolak</label>
                                                 <?php elseif ($value->status_transaksi == 'finish'): ?>
                                                     <label for="" class="label label-success">Selesai</label>
-                                                    <?php elseif($value->status_transaksi=='menunggu_pembayaran'):?>
-                                                        <label for="" class="label label-danger">Menunggu Pembayaran</label>
+                                                <?php elseif ($value->status_transaksi == 'menunggu_pembayaran'): ?>
+                                                    <label for="" class="label label-danger">Menunggu Pembayaran</label>
                                                 <?php endif; ?>
                                             </td>
                                             <td>
                                                 <?php if ($value->status_transaksi == 'verifikasi_pembayaran'): ?>
                                                     <button class="btn btn-primary" type="button" onclick="priview_bukti_bayar(<?= $value->id_transaksi ?>)"><i class="fa fa-eye"></i> Verifikasi</button>
                                                 <?php elseif ($value->status_transaksi == 'finish'): ?>
-                                                    <a href="<?= base_url('index.php/pelanggan/faktur/' . $value->id_transaksi) ?>" target="blank">
+                                                    <a href="<?= base_url('index.php/administrator/faktur/' . $value->id_transaksi) ?>" target="blank">
                                                         <button type="button" class="btn btn-success"><i class="fa fa-print"></i> Faktur</button></a>
                                                 <?php endif; ?>
                                                 <?php if ($value->status_transaksi == 'tolak'): ?>
@@ -137,6 +138,72 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             </div>
+        </div>
+    </div>
+</div>
+<!-- Modal laporan -->
+<div class="modal fade" id="modal-laporan" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="<?= base_url('administrator/laporan-penjualan') ?>" target="_blank" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Pilih Rentang Laporan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Pilih Jenis Laporan</label>
+                        <select name="jenis" onchange="show_option()" class="form-control" id="jenis">
+                            <option value="">Pilih Jenis Laporan</option>
+                            <option value="bulan">Bulanan</option>
+                            <option value="tahun">Tahunan</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                        <small id="helpId" class="text-muted">Pilih Jenis Laporan</small>
+                    </div>
+                    <div class="form-group menu-option bulan-laporan" hidden="true">
+                        <label for="">Pilih Bulan Laporan</label>
+                        <select name="bulan" class="form-control" id="bulan">
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">SEPTEMBER</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <small id="helpId" class="text-muted">Pilih Bulan</small>
+                    </div>
+                    <div class="form-group menu-option tahun-laporan" hidden="true">
+                        <label for="">Pilih Tahun Laporan</label>
+                        <select name="tahun" id="tahun" class="form-control">
+
+                        </select>
+                        <small id="helpId" class="text-muted">Tahun Laporan</small>
+                    </div>
+                    <div class="form-group menu-option awal-laporan" hidden="true">
+                        <label for="">Tanggal Awal Laporan</label>
+                        <input type="date" name="awal-laporan" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                        <small id="helpId" class="text-muted"></small>
+                    </div>
+                    <div class="form-group menu-option akhir-laporan" hidden="true">
+                        <label for="">Tanggal Akhir Laporan</label>
+                        <input type="date" name="akhir-laporan" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                        <small id="helpId" class="text-muted"></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Cetak</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -259,5 +326,44 @@
             }
         });
     }
+    // use for make report
+    print_laporan = () => {
+        $.ajax({
+            type: "GET",
+            url: url + "administrator/tahun-laporan",
+            dataType: "JSON",
+            success: function(response) {
+                if (response.status == 'success') {
+                    let tahun = "";
+                    $.each(response.data, function(indexInArray, valueOfElement) {
+                        tahun += `<option value="${valueOfElement.tahun}">${valueOfElement.tahun}</option>`;
+                    });
+                    $("#tahun").html(tahun);
+                    $("#modal-laporan").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `Something went wrong! ${xhr.status} ${xhr.responseText} ${thrownError}`,
+                });
+            }
+        });
+    }
+    show_option = () => {
+        let jenis = $("#jenis").children('option:selected').val();
+        $(".menu-option").hide();
+        if (jenis == "bulan") {
+            $(".bulan-laporan").show();
+            $(".tahun-laporan").show();
+        } else if (jenis == "tahun") {
+            $(".tahun-laporan").show();
+        } else if (jenis == "custom") {
+            $(".awal-laporan").show();
+            $(".akhir-laporan").show();
+        }
+    }
+    // end report
 </script>
 <?= $this->endSection() ?>
